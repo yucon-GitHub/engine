@@ -4,14 +4,16 @@ const resolve = dir => {
     return path.join(__dirname, dir);
 };
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production' ? '/production-sub-path/' : '/',
     devServer: {
         port: 8080,
         proxy: {
-            '/portal': {
+            '/api': {
                 // target: 'http://py.dev.yatiku.com/',
                 target: 'http://192.168.99.116:8060',
-                changeOrigin: true
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': '/'
+                }
             }
         }
     },

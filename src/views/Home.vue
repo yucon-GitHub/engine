@@ -12,6 +12,7 @@
         <p class="cl-main">Home</p>
         <button @click="addUser1">添加userInfo1 vuex</button>
         <button @click="addUser2">添加userInfo2 vuex</button>
+        <icon class="iconfont iconhome"></icon>
     </div>
 </template>
 

@@ -1,0 +1,10 @@
+// 混合器
+
+@mixin avatar-img($width, $height) {
+    width: $width;
+    height: $height;
+    border-radius: 50%;
+    display: block;
+    object-fit: cover;
+    background: #e8e8e8;
+}

@@ -33,7 +33,7 @@ export default function (prefix = '', config = {}) {
                 return false;
             }
             // 错误提示
-            if(response.data.code !== 200) {
+            if (response.data.code !== 200) {
                 console.log(response.data.message)
             }
             console.log('hide Loading');
@@ -60,17 +60,18 @@ export default function (prefix = '', config = {}) {
     };
 }
 
-
 // 重设config
 function _axiosConfig(prefix, config) {
     // 默认请求头
-    const DEFAULT_HEADER = 'application/x-www-form-urlencoded;charset=UTF-8';
+    const DEFAULT_HEADER = {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    };
     axios.defaults.withCredentials = true;
     // 开发环境默认使用proxy代理请求
-    axios.defaults.baseURL = process.env.NODE_ENV == 'development' ? `${reConfig.apiPrefix}${prefix}/api` : `${reConfig.apiPrefix}${prefix}`;
+    axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? `${reConfig.apiPrefix}${prefix}/api` : `${reConfig.apiPrefix}${prefix}`;
     axios.defaults.timeout = 5000;
     config = {
-        'headers': { 'Content-Type': config['ContentType'] || DEFAULT_HEADER },
+        'headers': { 'Content-Type': config['ContentType'] || DEFAULT_HEADER['Content-Type'] },
         ...config
     };
     return axios.create();

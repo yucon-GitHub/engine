@@ -1,0 +1,114 @@
+@import './them';
+
+// 字体
+@for $i from 12 through 50 {
+    fz-#{$i} {
+        font-size: $i + px;
+    }
+}
+
+// ---- 边距 ----
+@for $i from 1 through 5 {
+    .mt-#{$i * 10} {
+        margin-top: $i * 10px;
+    }
+
+    .mr-#{$i * 10} {
+        margin-right: $i * 10px;
+    }
+
+    .mb-#{$i * 10} {
+        margin-bottom: $i * 10px;
+    }
+
+    .ml-#{$i * 10} {
+        margin-left: $i * 10px;
+    }
+}
+
+/*  布局 */
+
+// flex
+.flex { display: flex; }
+
+.space-between { justify-content: space-between; }
+
+.flex-center { justify-content: center; }
+
+.flex-column-center { align-items: center; }
+
+.flex-column { flex-flow: column; }
+
+.flex-1 { flex: 1; }
+
+/* layout */
+.bold { font-weight: bold; }
+
+.radius-4 { border-radius: 4px; }
+.radius-10 { border-radius: 10px; }
+.radius-20 { border-radius: 20px; }
+
+.relative { position: relative; }
+
+// 全屏居中
+.left-top-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// 主题色外发光
+.theme-shadow { box-shadow: 0 0 4px 4px $main; }
+
+/* 超出隐藏 */
+// 单行省略
+.text-hidden {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+// 两行省略
+.text-hidden-2 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+// 按钮默认样式
+button {
+    display: inline-block;
+    line-height: 1;
+    border-radius: 4px;
+    outline: 0;
+    box-sizing: content-box;
+    background-color: transparent;
+    border: 1px solid #e8e8e8;
+    padding:10px 20px;
+    letter-spacing: 1px;
+
+    &::before,
+    &::after {
+        border: 0;
+        outline: 0;
+    }
+
+    // 点击反馈
+    &:active {
+        filter: brightness(0.8);
+    }
+}
+
+// mask 遮罩
+.mask { position: fixed; left: 0; right: 0; width: 100%; background-color: rgba(0, 0, 0, .5); z-index: 9; }
+
+// 交互反馈
+.pointer {
+    cursor: pointer;
+    :active {
+        filter: brightness(.8);
+    }
+}

@@ -1,0 +1,31 @@
+/* 主题颜色 */
+
+$black: #333;
+$white: #fff;
+$white-slow: #c6c7e0;
+$basic: #666;
+$second: #9598b7;
+$main: #496fff;
+$main-slow: #88a1ff;
+$main-deep: #181677;
+$success: #3bba7c;
+$warning: #ffcc00;
+$danger: #ff5b5b;
+$error: #ff1839;
+$border: #eee;
+$active: #f4f7ff;
+$background: #272c36;
+$background-deep: #19202f;
+$mask: rgba(82, 82, 86, 0.9);
+$shadow: rgba($color: $main, $alpha: 0.2);
+
+@each $name,
+$color in (black: $black, white: $white, white-slow: $white-slow, basic: $basic, second: $second, main: $main, main-slow: $main-slow, main-deep: $main-deep, success: $success, warning: $warning, danger: $danger, error: $error, active: $active) {
+  .cl-#{$name} {
+    color: $color;
+  }
+
+  .bcl-#{$name} {
+    background-color: $color;
+  }
+}

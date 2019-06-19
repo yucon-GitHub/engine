@@ -1,9 +1,35 @@
-@import './them';
+@import './theme';
 @import './iconfont.css';
+@import './mixin';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+
+html {
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Source Han Sans SC, WenQuanYi Micro Hei, sans-serif;
+}
+
+li { list-style: none; }
+
+// color & background-color
+@each $name,
+$color in (black: $black, white: $white, white-slow: $white-slow, basic: $basic, second: $second, main: $main, main-slow: $main-slow, main-deep: $main-deep, success: $success, warning: $warning, danger: $danger, error: $error, active: $active) {
+    .color-#{ $name } {
+        color: $color;
+    }
+
+    .back-color-#{ $name } {
+        background-color: $color;
+    }
+}
 
 // 字体
 @for $i from 12 through 50 {
-    fz-#{$i} {
+    .fz-#{$i} {
         font-size: $i + px;
     }
 }
@@ -36,6 +62,10 @@
 
 .flex-center { justify-content: center; }
 
+.flex-start { justify-content: flex-start; }
+
+.flex-end { justify-content: flex-end; }
+
 .flex-column-center { align-items: center; }
 
 .flex-column { flex-flow: column; }
@@ -53,10 +83,11 @@
 
 // 全屏居中
 .left-top-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @include left-top-center;
+}
+
+.text-center {
+    text-align: center;
 }
 
 // 主题色外发光
@@ -87,10 +118,15 @@ button {
     outline: 0;
     box-sizing: content-box;
     background-color: transparent;
-    border: 1px solid #e8e8e8;
-    padding:10px 20px;
+    border: 1px solid $main;
+    padding:10px 25px;
     letter-spacing: 1px;
-
+    cursor: pointer;
+    color: $main;
+    &[type="primary"] {
+        background: $main;
+        color: $white;
+    }
     &::before,
     &::after {
         border: 0;
@@ -104,7 +140,7 @@ button {
 }
 
 // mask 遮罩
-.mask { position: fixed; left: 0; right: 0; width: 100%; background-color: rgba(0, 0, 0, .5); z-index: 9; }
+.mask { position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, .5); z-index: 9; }
 
 // 交互反馈
 .pointer {

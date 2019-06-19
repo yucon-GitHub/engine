@@ -22,7 +22,7 @@ export default new Router({
             name: 'home',
             component: Home,
             meta: {
-                title: 'vueProject'
+                title: 'HOME'
             }
         },
         ...userModule

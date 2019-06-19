@@ -13,10 +13,6 @@ export default new Vuex.Store({
     action
 })
 
-
-
-
-
 /* 获取多个状态辅助函数用法 */
 
 /*
@@ -37,5 +33,3 @@ methods: {
     ...mapActions(["user_Info", "others"])
 }
 */
-
-

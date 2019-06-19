@@ -10,28 +10,51 @@
             <!--<path d="M 100 300 q 0 0 -30 120 q 130 80 260 0 q 20 0 -30 -125" stroke="#000" stroke-width="2" fill="none" />-->
         </svg>
         <p class="cl-main">Home</p>
-        <button @click="addUser1">添加userInfo1 vuex</button>
-        <button @click="addUser2">添加userInfo2 vuex</button>
-        <icon class="iconfont iconhome"></icon>
+        <span class="iconfont iconhome"></span>
+        <p>{{ 50.1650 | toFixed }}</p>
+        <p>{{ '1560843960' | formatTime }}</p>
+        <div v-for="item in list" :key="item.state">{{ item.state | stateType({ 0: '已结束', 1: '进行中', 2:'已超时' }) }}</div>
+
+        <modal modalTitle="活动申请" confirmText="好的" :modalFlag="modalFlag" @closeModal="modalFlag = false" :mask="false">
+            <div slot="content">
+                <div>asdasdasd</div>
+            </div>
+        </modal>
+
+        <div class="box back-color-main" @click="modalFlag = true"></div>
     </div>
 </template>
 
 <script>
-import { testApi, addProduct } from '@/api/home';
-import { countSeconds } from '@/utils/util';
+import { testApi, addProduct } from '@/api/home'
+import { countSeconds } from '@/utils/util'
+import { mapState } from 'vuex'
+
+const modal = () => import('@/components/modal')
+
 export default {
     name: 'home',
     components: {
         // HelloWorld
+        modal
     },
-    data() {
+    data () {
         return {
-            timer: null
+            timer: null,
+            list: [
+                { state: 1 },
+                { state: 0 },
+                { state: 2 }
+            ],
+            modalFlag: true
         }
     },
-    created() {
-        this.getData();
-        this.checkUtil();
+    created () {
+        this.getData()
+        this.checkUtil()
+    },
+    computed: {
+        ...mapState(['user_Info'])
     },
     methods: {
         aa () {
@@ -40,7 +63,7 @@ export default {
         getData () {
             testApi().then(res => {
                 console.log('first request', res)
-            });
+            })
             let params = {
                 name: 'aawwa',
                 slot: 0,
@@ -53,27 +76,25 @@ export default {
             })
         },
         checkUtil () {
-            let deffTime = 10;
+            let deffTime = 10
             this.timer = setInterval(() => {
-                deffTime -= 1;
+                deffTime -= 1
                 let timeStr = countSeconds(deffTime)
                 console.log(timeStr)
                 if (deffTime === 0) return clearInterval(this.timer)
             }, 1000)
-        },
-        addUser1 () {
-            this.$store.commit('setUserInfo', { name: 'yucon', sex: 1 })
-        },
-        addUser2 () {
-            this.$store.commit('setUserInfo', { age: '18', sex: 1 })
         }
     }
 }
 </script>
 <style lang="scss" scoped>
-    .boll{
-        :hover{
-            fill:red;
-        }
+.boll {
+    :hover {
+        fill: red;
     }
+}
+.box{
+    width: 50px;
+    height: 50px;
+}
 </style>

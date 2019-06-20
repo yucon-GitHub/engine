@@ -6,21 +6,20 @@
 */
 -->
 <template>
-    <div :class="{'mask': mask}" v-if="modalFlag">
-        <div
-            class="left-top-center modal-component radius-4"
-            :class="{'modal-border': !mask}">
-
-            <div class="title fz-17 color-main mt-10 mb-10">{{ modalTitle }}</div>
-
-            <slot name="content"></slot>
-
-            <div class="but-group flex flex-end" v-if="showButton">
-                <button class="mr-20" v-if="showCancel" @click="cancel">{{ cancelText }}</button>
-                <button type="primary" v-if="showConfirm" @click="confirm">{{ confirmText }}</button>
+    <transition name="fade">
+        <div :class="{'mask': mask}" v-if="modalFlag">
+            <div
+                class="left-top-center modal-component radius-4"
+                :class="{'modal-border': !mask}">
+                <div class="title fz-17 color-main mt-10 mb-10">{{ modalTitle }}</div>
+                <slot name="content"></slot>
+                <div class="but-group flex flex-end" v-if="showButton">
+                    <button class="mr-20" v-if="showCancel" @click="cancel">{{ cancelText }}</button>
+                    <button type="primary" v-if="showConfirm" @click="confirm">{{ confirmText }}</button>
+                </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -60,6 +59,9 @@ export default {
         cancel () {
             this.modalFlag = false
             this.$emit('closeModal')
+        },
+        confirm () {
+            console.log('confirm')
         }
     }
 }
@@ -70,7 +72,7 @@ export default {
     border: 1px solid $border;
 }
 .modal-component {
-    width: 60%;
+    width: 50%;
     top: 40%;
     padding: 15px;
     background: $white;

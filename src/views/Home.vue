@@ -22,12 +22,14 @@
         </modal>
 
         <div class="box back-color-main" @click="modalFlag = true"></div>
+        <router-link :to="{ name: 'user/about' }">router -> user/about</router-link>
+        <div style="height: 1000px"></div>
     </div>
 </template>
 
 <script>
 import { testApi, addProduct } from '@/api/home'
-import { countSeconds } from '@/utils/util'
+import { countSeconds, environment } from '@/utils/util'
 import { mapState } from 'vuex'
 
 const modal = () => import('@/components/modal')
@@ -35,7 +37,6 @@ const modal = () => import('@/components/modal')
 export default {
     name: 'home',
     components: {
-        // HelloWorld
         modal
     },
     data () {
@@ -52,6 +53,7 @@ export default {
     created () {
         this.getData()
         this.checkUtil()
+        console.log(environment().isAndroid)
     },
     computed: {
         ...mapState(['user_Info'])
@@ -78,10 +80,10 @@ export default {
         checkUtil () {
             let deffTime = 10
             this.timer = setInterval(() => {
+                if (deffTime <= 0) return clearInterval(this.timer)
                 deffTime -= 1
                 let timeStr = countSeconds(deffTime)
                 console.log(timeStr)
-                if (deffTime === 0) return clearInterval(this.timer)
             }, 1000)
         }
     }

@@ -16,7 +16,7 @@ Object.keys(filters).forEach(key => {
 // 路由守卫
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title || 'T-JUNCTION'
-    next()
+    next();
 })
 
 new Vue({

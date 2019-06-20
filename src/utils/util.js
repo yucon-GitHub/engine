@@ -43,7 +43,7 @@ export function countSeconds (second = 86400) {
     h = h < 10 ? `0${h}` : h
     let d = parseInt(second / 86400)
     if (second < 3600) {
-        return `${m}分${s}`
+        return `${m} 分钟 ${s} 秒`
     } else {
         return `${d} 天 ${h} 小时 ${m} 分钟 ${s} 秒`
     }
@@ -74,17 +74,24 @@ export const filters = {
 /**
  * 判断设备
  */
-export const environment = {
-    isAndroid () {
-        let u = navigator.userAgent
-        return u.includes('Android') || u.includes('Adr')
-    },
-    isIos () {
-        let u = navigator.userAgent
-        return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
-    },
-    isWechat () {
-        let u = navigator.userAgent
-        return !!(u.match(/MicroMessenger/i) == 'MicroMessenger')
+export const environment = () => {
+    let ua = navigator.userAgent
+    return {
+        isAndroid: ua.includes('Android') || ua.includes('Adr'),
+        isIos: !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+        isWechat: !!(ua.match(/MicroMessenger/i) === 'MicroMessenger'),
+        isQQ: ua.includes('qq'),
+        is360: ua.includes('chrome') && _mine('type', 'application/vnd.chromium.remoting-viewer')
     }
+}
+
+// 检测是是否360浏览器
+function _mine (option, value) {
+    let mimeTypes = navigator.mimeTypes;
+    for (let mt in mimeTypes) {
+        if (mimeTypes[mt][option] == value) {
+            return true;
+        }
+    }
+    return false;
 }

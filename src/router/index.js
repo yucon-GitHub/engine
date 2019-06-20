@@ -13,6 +13,7 @@ export default new Router({
         {
             path: '*',
             component: errorPage,
+            redirect: { name: 'home' },
             meta: {
                 title: '页面错误'
             }
@@ -22,14 +23,15 @@ export default new Router({
             name: 'home',
             component: Home,
             meta: {
-                title: 'HOME'
+                title: 'HOME',
+                index: 0
             }
         },
         ...userModule
     ],
 
 
-    scrollBehavior(to, from, savedPosition) {
+    scrollBehavior (to, from, savedPosition) {
         if (savedPosition) return savedPosition;
         else return {
             x: 0,

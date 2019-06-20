@@ -12,7 +12,8 @@ export default [
         path: '/user/about',
         name: 'user/about',
         meta: {
-            title: '关于我们'
+            title: '关于我们',
+            index: 1
         },
         component: () => import(/* webpackChunkName: "about" */ '@/views/user/about.vue')
     }

@@ -11,13 +11,15 @@
 
 html {
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Source Han Sans SC, WenQuanYi Micro Hei, sans-serif;
+    height: 100%;
 }
 
 li { list-style: none; }
 
 // color & background-color
 @each $name,
-$color in (black: $black, white: $white, white-slow: $white-slow, basic: $basic, second: $second, main: $main, main-slow: $main-slow, main-deep: $main-deep, success: $success, warning: $warning, danger: $danger, error: $error, active: $active) {
+$color in (black: $black, white: $white, white-slow: $white-slow, basic: $basic, second: $second, main: $main,
+    main-slow: $main-slow, main-deep: $main-deep, success: $success, warning: $warning, danger: $danger, error: $error, active: $active) {
     .color-#{ $name } {
         color: $color;
     }

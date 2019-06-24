@@ -6,6 +6,6 @@
 */
 export default {
     baseUrl: 'http://py.dev.yatiku.com/',
-    apiPrefix: '',                  // 请求前缀，通常是版本号version,如：/api/v2
-    resources: ''                   // 网络资源路径
+    apiPrefix: '', // 请求前缀，通常是版本号version,如：/api/v2
+    resources: '' // 网络资源路径
 }

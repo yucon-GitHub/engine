@@ -61,7 +61,7 @@ export default function (prefix = '', config = {}) {
 }
 
 // 重设config
-function _axiosConfig(prefix, config) {
+function _axiosConfig (prefix, config) {
     // 默认请求头
     const DEFAULT_HEADER = {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'

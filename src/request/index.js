@@ -8,7 +8,6 @@ export default function (prefix = '', config = {}) {
     let { loading } = config;
     // 创建一个axios实例 config、prefix 为独立请求的配置
     const INSTANCES = _axiosConfig(prefix, config);
-
     // request 拦截器
     INSTANCES.interceptors.request.use(
         config => {
@@ -66,13 +65,18 @@ function _axiosConfig (prefix, config) {
     const DEFAULT_HEADER = {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     };
+    let ContentType = {
+        json: 'application/json',
+        multipart: 'multipart/form-data'
+    }
+    config['Content-Type'] = ContentType[config['ContentType']];
     axios.defaults.withCredentials = true;
     // 开发环境默认使用proxy代理请求
     axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? `${reConfig.apiPrefix}${prefix}/api` : `${reConfig.apiPrefix}${prefix}`;
     axios.defaults.timeout = 5000;
     config = {
-        'headers': { 'Content-Type': config['ContentType'] || DEFAULT_HEADER['Content-Type'] },
+        'headers': { 'Content-Type': config['Content-Type'] || DEFAULT_HEADER['Content-Type'] },
         ...config
     };
-    return axios.create();
+    return axios.create(config);
 }

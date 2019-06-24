@@ -63,9 +63,9 @@ export default {
             this.$refs.boll.style = 'fill:red;'
         },
         getData () {
-            testApi().then(res => {
-                console.log('first request', res)
-            })
+            // testApi().then(res => {
+            //     console.log('first request', res)
+            // })
             let params = {
                 name: 'aawwa',
                 slot: 0,

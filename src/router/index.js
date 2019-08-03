@@ -27,15 +27,7 @@ export default new Router({
                 index: 0
             }
         },
-        {
-            path: '/tarot',
-            name: 'tarot',
-            component: () => import(/* webpackChunkName: "about" */ '@/views/tarot.vue'),
-            meta: {
-                title: 'tarot',
-                index: 0
-            }
-        },
+
         ...userModule
     ],
 

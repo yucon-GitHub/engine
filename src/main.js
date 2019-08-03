@@ -1,21 +1,36 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from '@/router/index'
-import store from './store'
-import './static/style/reset.scss'
+import Vue from 'vue';
+import App from './App.vue';
+import router from '@/router/index';
+import store from './store';
+import toast from '@/components/toast';
+import './static/style/reset.scss';
 
+// 工具类--过滤器函数集
 import { filters } from '@/utils/util'
 
 Vue.config.productionTip = false
 
+Vue.use(toast);
+
 // 添加全局过滤器
 Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key])
-})
+});
 
-// 路由守卫
+/*
+ * 自定义指令：
+ */
+// 聚焦
+Vue.directive('focus', {
+    inserted: function (el) {
+        el.focus()
+    }
+});
+
+/* 路由守卫 */
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title || 'T-JUNCTION'
+    document.title = to.meta.title || 'T-JUNCTION';
+    // if (router.query.time == '' || router.query.time == undefined) router.query.time = new Date().getTime() / 1000;
     next();
 })
 

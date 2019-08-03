@@ -7,7 +7,7 @@
 -->
 <template>
     <transition name="fade">
-        <div :class="{'mask': mask}" v-if="modalFlag">
+        <div :class="{'mask': mask}" v-if="value">
             <div
                 class="left-top-center modal-component radius-4"
                 :class="{'modal-border': !mask}">
@@ -26,7 +26,10 @@
 export default {
     name: 'modal',
     props: {
-        modalFlag: Boolean,
+        value: {
+            type: Boolean,
+            default: false
+        },
         // 是否显示遮罩
         mask: {
             type: Boolean,
@@ -55,13 +58,17 @@ export default {
         },
         modalTitle: String
     },
+    model: {
+        prop: 'value',
+        event: 'input'
+    },
     methods: {
-        cancel () {
-            this.modalFlag = false
-            this.$emit('closeModal')
+        cancel() {
+            this.$emit('input', false);
+            this.$emit('closeModal');
         },
-        confirm () {
-            console.log('confirm')
+        confirm() {
+            console.log('confirm');
         }
     }
 }

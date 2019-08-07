@@ -106,16 +106,19 @@ export default {
     }
 
     .loading-boll {
-        width: 20px;
-        height: 20px;
-        border-style: dashed;
+        width: 25px;
+        height: 25px;
+        border-style: inset;
         border-color: $white;
-        border-width: 1px 1px 0 0;
-        margin: 10px 0;
+        border-width: 3px;
+        margin: 10px auto;
         border-radius: 50%;
-        animation: loadingRota .5s linear infinite;
+        background: $warning;
+        box-shadow: 0 0 4px 4px $white, 0 0 1px 1px $black inset ;
+        animation: loadingRota 1s linear infinite;
         @keyframes loadingRota {
-            to { transform: rotate(360deg); }
+            from { transform: rotate(0) translate(2px, 2px); }
+            to { transform: rotate(360deg) translate(2px, 2px); }
         }
     }
     .toast-icon {
@@ -133,9 +136,9 @@ export default {
             padding: 20px 30px;
         }
         .btn-group {
-            border-top: 1px solid $main-slow;
+            border-top: 1px solid $border;
             button:first-child {
-                border-right: 1px solid $main-slow;
+                border-right: 1px solid $border;
             }
             button {
                 border: none;

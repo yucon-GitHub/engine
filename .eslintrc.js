@@ -20,7 +20,7 @@ module.exports = {
             'warn',
             'single'
         ],
-        'semi': 0,
+        'semi': ["error", "always"],
         'no-console': 'off',
         'no-debugger': 'off',
         "no-tabs": "off",

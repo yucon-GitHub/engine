@@ -7,16 +7,16 @@ import { ToastComponents, AlertComponents } from '@/components/Toast';
 import './static/style/reset.scss';
 
 // 工具类--过滤器函数集
-import { filters } from '@/utils/util'
+import { filters } from '@/utils/util';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.use(ToastComponents);
 Vue.use(AlertComponents);
 
 // 添加全局过滤器
 Object.keys(filters).forEach(key => {
-    Vue.filter(key, filters[key])
+    Vue.filter(key, filters[key]);
 });
 
 /*
@@ -25,7 +25,7 @@ Object.keys(filters).forEach(key => {
 // 聚焦
 Vue.directive('focus', {
     inserted: function(el) {
-        el.focus()
+        el.focus();
     }
 });
 
@@ -34,10 +34,10 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title || 'T-JUNCTION';
     // if (router.query.time == '' || router.query.time == undefined) router.query.time = new Date().getTime() / 1000;
     next();
-})
+});
 
 new Vue({
     router,
     store,
     render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

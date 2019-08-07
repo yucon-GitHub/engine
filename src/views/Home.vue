@@ -13,18 +13,24 @@
         </modal>
 
         <div class="box back-color-main" @click="modalFlag = true"></div>
-        <router-link :to="{ name: 'user/about' }">router -> user/about</router-link>
-        <button @click="showToast">提示</button>
-        <button @click="showAlert">alert</button>
-        <button @click="showOther">其他toast 测试</button>
+
+        <router-link :to="{ name: 'user/about' }">router-path</router-link>
+
+        <div class="flex flex-column-center flex-warp btn-group">
+            <button @click="showToast">提示</button>
+            <button @click="showAlert">alert</button>
+            <button @click="showOther">其他toast 测试</button>
+            <button @click="formFilter">表单验证</button>
+        </div>
+        <div style="height: 1000px;"></div>
     </div>
 </template>
 
 <script>
-import { environment } from '@/utils/util'
-import { mapState } from 'vuex'
+import { environment, schema, scrollBottom } from '@/utils/util';
+import { mapState } from 'vuex';
 
-const modal = () => import('@/components/modal')
+const modal = () => import('@/components/modal');
 
 export default {
     name: 'home',
@@ -40,8 +46,11 @@ export default {
                 { state: 2 }
             ],
             modalFlag: false,
-            index: 1
-        }
+            index: 1,
+            name: 'hah',
+            phone: '',
+            loadMore: true
+        };
     },
 
     created() {
@@ -50,7 +59,12 @@ export default {
         /* 轻提示
          * type 支持的类型为 none, success, error, success
          */
-        this.$toast('成功', 'none');
+        // this.$toast('成功', 'none');
+
+        scrollBottom(res => {
+            if (this.loadMore) this.getList();
+        });
+        // console.log(scrollBottom());
     },
     computed: {
         ...mapState(['user_Info'])
@@ -66,7 +80,7 @@ export default {
             // hide() 用于关闭 type = loading 的 toast
             setTimeout(() => {
                 this.$toast.hide();
-            }, 3000)
+            }, 3000);
         },
 
         /* 模态框 */
@@ -85,14 +99,36 @@ export default {
                     console.log(res);
                     /* 这里是点击了取消的回调 */
                 }
-            })
+            });
         },
 
         showOther() {
             this.$toast('失败', 'error', 20000);
+        },
+
+        // 表单合法检测
+        formFilter() {
+            schema.bind(this)({
+                name: { require: true, message: '请输入您的姓名' },
+                phone: { require: true, message: '请输入您的手机号', regexp: /^1\d{10}$/, regexpMsg: '手机号类型错误' }
+            }).then(() => {
+            // do something
+            });
+        },
+
+        // 下拉执行方法
+        getList() {
+            this.loadMore = false;
+            let duration = [1000, 2000, 3000, 5000][Math.floor(Math.random() * 3)];
+            this.$toast('正在加载', 'loading');
+            setTimeout(() => {
+                console.log('加载完毕, 释放方法锁');
+                this.loadMore = true;
+                this.$toast.hide();
+            }, duration);
         }
     }
-}
+};
 </script>
 <style lang="scss" scoped>
 .boll {
@@ -103,5 +139,10 @@ export default {
 .box{
     width: 50px;
     height: 50px;
+}
+.btn-group {
+    button {
+        margin: 5px;
+    }
 }
 </style>

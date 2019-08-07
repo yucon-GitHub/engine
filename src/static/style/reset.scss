@@ -60,6 +60,8 @@ $color in (black: $black, white: $white, white-slow: $white-slow, basic: $basic,
 // flex
 .flex { display: flex; }
 
+.flex-warp { flex-wrap: wrap };
+
 .space-between { justify-content: space-between; }
 
 .flex-center { justify-content: center; }

@@ -83,6 +83,10 @@ const ToastComponents = function() {
 
 const AlertComponents = function() {
     Vue.prototype.$alert = Alert;
+    Vue.prototype.$alert.hide = function() {
+        const toastDom = document.getElementById('Toast');
+        document.getElementsByTagName('body')[0].removeChild(toastDom);
+    };
 }
 
 export {

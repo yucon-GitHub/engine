@@ -77,6 +77,9 @@ export default {
                 onConfirm: res => {
                     console.log(res);
                     /* 这里是点击了确认的回调 */
+
+                    // 关闭模态框
+                    this.$alert.hide();
                 },
                 onCancel: res => {
                     console.log(res);

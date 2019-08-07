@@ -79,7 +79,7 @@ export default {
     border: 1px solid $border;
 }
 .modal-component {
-    width: 50%;
+    width: 80%;
     top: 40%;
     padding: 15px;
     background: $white;

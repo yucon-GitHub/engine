@@ -2,7 +2,8 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from '@/router/index';
 import store from './store';
-import toast from '@/components/toast';
+import { ToastComponents, AlertComponents } from '@/components/Toast';
+
 import './static/style/reset.scss';
 
 // 工具类--过滤器函数集
@@ -10,7 +11,8 @@ import { filters } from '@/utils/util'
 
 Vue.config.productionTip = false
 
-Vue.use(toast);
+Vue.use(ToastComponents);
+Vue.use(AlertComponents);
 
 // 添加全局过滤器
 Object.keys(filters).forEach(key => {
@@ -22,7 +24,7 @@ Object.keys(filters).forEach(key => {
  */
 // 聚焦
 Vue.directive('focus', {
-    inserted: function (el) {
+    inserted: function(el) {
         el.focus()
     }
 });

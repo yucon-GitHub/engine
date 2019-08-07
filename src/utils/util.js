@@ -8,7 +8,7 @@
  * @method: 格式化时间戳 格式 "yyyy.MM.dd hh:mm:ss S"
  * @remark: 连接符可自定义
  */
-export function formatTime (timeStamp, fmt = 'yyyy.MM.dd hh:mm') {
+export function formatTime(timeStamp, fmt = 'yyyy.MM.dd hh:mm') {
     var date = new Date(timeStamp * 1000)
     var o = {
         'M+': date.getMonth() + 1, // 月份
@@ -34,7 +34,7 @@ export function formatTime (timeStamp, fmt = 'yyyy.MM.dd hh:mm') {
  * @method: 倒计时格式化
  * @remark: 秒级时间戳
  */
-export function countSeconds (second = 86400) {
+export function countSeconds(second = 86400) {
     let s = parseInt(second % 3600 % 60)
     s = s < 10 ? `0${s}` : s
     let m = parseInt(second % 3600 / 60)
@@ -54,19 +54,19 @@ export function countSeconds (second = 86400) {
  */
 export const filters = {
     // 保留两位小数点
-    toFixed (val) {
+    toFixed(val) {
         if (!val) return ''
         return val.toFixed(2)
     },
 
     // 格式化时间 timeStamp： 时间戳  fmt： 格式
-    formatTime (timeStamp, fmt) {
+    formatTime(timeStamp, fmt) {
         if (!timeStamp) return ''
         return formatTime(timeStamp, fmt)
     },
 
     // 状态显示，例：state { 1 => 进行中，2 => 已结束，3 => 已超时 }
-    stateType (state, stateName) {
+    stateType(state, stateName) {
         return stateName[state]
     }
 }
@@ -86,7 +86,7 @@ export const environment = () => {
 }
 
 // 检测是是否360浏览器
-function _mine (option, value) {
+function _mine(option, value) {
     let mimeTypes = navigator.mimeTypes;
     for (let mt in mimeTypes) {
         if (mimeTypes[mt][option] == value) {

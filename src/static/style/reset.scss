@@ -7,6 +7,7 @@
     padding: 0;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
+    font-size: 16px;
 }
 
 html {
@@ -117,7 +118,6 @@ $color in (black: $black, white: $white, white-slow: $white-slow, basic: $basic,
 // 按钮默认样式
 button {
     display: inline-block;
-    line-height: 1;
     border-radius: 4px;
     outline: 0;
     box-sizing: content-box;

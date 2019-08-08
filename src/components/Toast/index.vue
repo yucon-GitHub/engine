@@ -108,17 +108,16 @@ export default {
     .loading-boll {
         width: 25px;
         height: 25px;
-        border-style: inset;
+        border-style: dashed;
         border-color: $white;
         border-width: 3px;
         margin: 10px auto;
         border-radius: 50%;
         background: $warning;
-        box-shadow: 0 0 4px 4px $white, 0 0 1px 1px $black inset ;
+        box-shadow: 0 0 3px 3px $white, 0 0 1px 1px $black inset ;
         animation: loadingRota 1s linear infinite;
         @keyframes loadingRota {
-            from { transform: rotate(0) translate(2px, 2px); }
-            to { transform: rotate(360deg) translate(2px, 2px); }
+            to { transform: rotate(360deg); }
         }
     }
     .toast-icon {

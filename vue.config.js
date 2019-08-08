@@ -32,7 +32,15 @@ module.exports = {
             // 全局引入 scss 主题色变量 及 mixin 混合器
             sass: {
                 data: `@import "~@/static/style/theme.scss";@import "~@/static/style/mixin.scss";`
+            },
+            postcss: {
+                plugins: [
+                    // px自动转换rem 插件
+                    require('postcss-px2rem')({
+                        remUnit: 37.5
+                    })
+                ]
             }
         }
     }
-}
+};

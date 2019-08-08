@@ -9,21 +9,20 @@
 <script>
 export default {
     name: 'App',
-    data () {
+    data() {
         return {
             transitionName: 'slide-right'
-        }
+        };
     },
     methods: {
 
     },
     watch: {
         '$route'(to, from) {
-            console.log(to)
             this.transitionName = to.meta.index < from.meta.index ? 'slide-left' : 'slide-right'
         }
     }
-}
+};
 </script>
 <style lang="scss" scoped>
 #app{

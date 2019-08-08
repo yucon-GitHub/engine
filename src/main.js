@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from '@/router/index';
 import store from './store';
+import 'lib-flexible';
 import { ToastComponents, AlertComponents } from '@/components/Toast';
 
 import './static/style/reset.scss';

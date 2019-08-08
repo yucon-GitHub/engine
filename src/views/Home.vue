@@ -103,7 +103,7 @@ export default {
         },
 
         showOther() {
-            this.$toast('失败', 'error', 20000);
+            this.$toast('失败', 'error');
         },
 
         // 表单合法检测

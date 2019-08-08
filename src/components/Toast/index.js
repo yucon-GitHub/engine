@@ -20,19 +20,19 @@ const Toast = function(title = '', type = 'none', duration = 1500, mask = false)
                 type,
                 duration,
                 mask: type === 'loading' || type === 'alert'
-            }
-            return params
+            };
+            return params;
         }
-    }
+    };
 
     let initToast = new ComponentsController(components);
     initToast.$mount();
 
-    // /*  如存在toast 清空之前的节点重新生成 */
-    // if (document.querySelector('#Toast')) {
-    //     let toastDom = document.getElementById('Toast');
-    //     if (toastDom.childNodes) toastDom.removeChild(toastDom.childNodes[0]);
-    // }
+    /*  如存在toast 清空之前的节点重新生成 */
+    if (document.querySelector('#Toast')) {
+        const toastDom = document.getElementById('Toast');
+        document.getElementsByTagName('body')[0].removeChild(toastDom);
+    }
 
     document.body.appendChild(initToast.$el);
 
@@ -70,7 +70,7 @@ const Alert = function(options) {
 
     initToast.$mount();
     document.body.appendChild(initToast.$el);
-}
+};
 
 /* 抛出的方法挂载到vue原型链 */
 const ToastComponents = function() {
@@ -87,9 +87,9 @@ const AlertComponents = function() {
         const toastDom = document.getElementById('Toast');
         document.getElementsByTagName('body')[0].removeChild(toastDom);
     };
-}
+};
 
 export {
     ToastComponents,
     AlertComponents
-}
+};

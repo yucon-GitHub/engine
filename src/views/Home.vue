@@ -62,8 +62,10 @@ export default {
          */
         // this.$toast('成功', 'none');
 
-        scrollBottom(res => {
-            if (this.loadMore) this.getList();
+        this.$nextTick(() => {
+            scrollBottom(() => {
+                if (this.loadMore) this.getList();
+            });
         });
         // console.log(scrollBottom());
     },

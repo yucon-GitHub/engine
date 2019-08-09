@@ -137,10 +137,14 @@ export const schema = function(testParams = {}) {
  * @method： scrollBottom 检测滚动条置底，常用于下拉翻页预加载
  */
 export const scrollBottom = function(callback) {
-    let domHeight = document.documentElement.scrollHeight;
+    // dom 文档高度
+    let domHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+    // 设备窗口高度
+    let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
     window.addEventListener('scroll', () => {
-        let scrollHeight = document.body.scrollTop || document.documentElement.scrollTop;
-        if (domHeight - scrollHeight < 100) {
+        // 滚动条距离顶部位置
+        let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (scrollTop + windowHeight + 100 >= domHeight) {
             callback && callback();
         }
     });

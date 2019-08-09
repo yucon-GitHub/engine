@@ -2,8 +2,13 @@ import axios from 'axios';
 import router from '@/router/index';
 import reConfig from '@/request/config';
 import qs from 'qs';
+import { Toast, ToastHide } from '@/components/Toast';
 
-export default function (prefix = '', config = {}) {
+/**
+ * axios 二次封装
+ * @params: prefix = 请求域名前缀符；config = 请求配置，目前支持loading，请求头content-Type
+ */
+export default function(prefix = '', config = {}) {
     // 请求携带是否需要loading
     let { loading } = config;
     // 创建一个axios实例 config、prefix 为独立请求的配置
@@ -11,20 +16,20 @@ export default function (prefix = '', config = {}) {
     // request 拦截器
     INSTANCES.interceptors.request.use(
         config => {
-            if (loading) console.log('show Loading');
+            if (loading) Toast('请稍后', 'loading');
             return config;
         },
-        function (error) {
+        function(error) {
             return Promise.reject(error);
         }
     );
 
     // response 拦截器
     INSTANCES.interceptors.response.use(
-        function (response) {
+        function(response) {
             let { data } = { ...response };
             if (data && data.code === 404) {
-                console.log('404')
+                console.log('404');
                 router.replace({
                     // 跳转404或登陆页面
                     name: '404'
@@ -32,13 +37,15 @@ export default function (prefix = '', config = {}) {
                 return false;
             }
             // 错误提示
-            if (response.data.code !== 200) {
-                console.log(response.data.message)
+            if (response.data.message && response.data.code !== 200) {
+                Toast(response.data.message);
             }
-            console.log('hide Loading');
+            ToastHide();
             return response.data;
         },
-        function (error) {
+        function(error) {
+            ToastHide();
+            Toast('请求错误，请稍后重试', 'error');
             return Promise.reject(error);
         }
     );
@@ -60,15 +67,16 @@ export default function (prefix = '', config = {}) {
 }
 
 // 重设config
-function _axiosConfig (prefix, config) {
+function _axiosConfig(prefix, config) {
     // 默认请求头
     const DEFAULT_HEADER = {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     };
+    // 需要用到的请求头Content-Type 信息，在接口定义处携带config 参数: ContentType
     let ContentType = {
         json: 'application/json',
         multipart: 'multipart/form-data'
-    }
+    };
     config['Content-Type'] = ContentType[config['ContentType']];
     axios.defaults.withCredentials = true;
     // 开发环境默认使用proxy代理请求

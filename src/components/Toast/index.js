@@ -11,6 +11,8 @@ const ComponentsController = Vue.extend(template);
  *  mask = 遮罩层 (true 时禁止用户其他行为)
  *  duration = 显示时间
  */
+
+let timer = null; // 延迟清除toast的定时器
 const Toast = function(title = '', type = 'none', duration = 1500, mask = false) {
     const components = {
         /* data 对象为 template 里的data */
@@ -30,16 +32,15 @@ const Toast = function(title = '', type = 'none', duration = 1500, mask = false)
 
     /*  如存在toast 清空之前的节点重新生成 */
     if (document.querySelector('#Toast')) {
-        const toastDom = document.getElementById('Toast');
-        document.getElementsByTagName('body')[0].removeChild(toastDom);
+        ToastHide();
     }
 
     document.body.appendChild(initToast.$el);
 
     // 非loading 模式下自动关闭
     if (type !== 'loading' && type !== 'alert') {
-        setTimeout(() => {
-            document.body.removeChild(initToast.$el);
+        timer = setTimeout(() => {
+            ToastHide();
         }, duration);
     }
 
@@ -61,35 +62,41 @@ const Alert = function(options) {
                 type: 'alert',
                 content,
                 mask: true
-            }
-            return params
+            };
+            return params;
         },
         methods: { onConfirm, onCancel }
-    }
+    };
     let initToast = new ComponentsController(components);
 
     initToast.$mount();
     document.body.appendChild(initToast.$el);
 };
 
+const ToastHide = function() {
+    // 组件Toast dom
+    clearTimeout(timer);
+    const toastDom = document.getElementById('Toast');
+    if (toastDom) document.getElementsByTagName('body')[0].removeChild(toastDom);
+};
+
 /* 抛出的方法挂载到vue原型链 */
 const ToastComponents = function() {
     Vue.prototype.$toast = Toast;
-    Vue.prototype.$toast.hide = function() {
-        const toastDom = document.getElementById('Toast');
-        document.getElementsByTagName('body')[0].removeChild(toastDom);
-    };
+    Vue.prototype.$toast.hide = ToastHide;
 };
 
 const AlertComponents = function() {
     Vue.prototype.$alert = Alert;
-    Vue.prototype.$alert.hide = function() {
-        const toastDom = document.getElementById('Toast');
-        document.getElementsByTagName('body')[0].removeChild(toastDom);
-    };
+    Vue.prototype.$alert.hide = ToastHide;
 };
 
 export {
+    // 抛出供入口 mainJs 全局挂载
     ToastComponents,
-    AlertComponents
+    AlertComponents,
+    // 单独抛出供独立方法使用
+    Toast,
+    Alert,
+    ToastHide
 };

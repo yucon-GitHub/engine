@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 import mutations from './mutations';
 import action from './action';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
@@ -11,7 +11,7 @@ export default new Vuex.Store({
     },
     mutations,
     action
-})
+});
 
 /* 获取多个状态辅助函数用法 */
 

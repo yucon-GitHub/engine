@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from '../views/Home.vue';
 import errorPage from '@/views/404.vue';
 import userModule from './module/user'; // user路由模块
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
     mode: 'history',
@@ -31,13 +31,13 @@ export default new Router({
         ...userModule
     ],
 
-    scrollBehavior (to, from, savedPosition) {
+    scrollBehavior(to, from, savedPosition) {
         if (savedPosition) return savedPosition;
         else {
             return {
                 x: 0,
                 y: 0
-            }
+            };
         }
     }
-})
+});

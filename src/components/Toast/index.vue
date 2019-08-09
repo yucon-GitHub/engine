@@ -36,7 +36,7 @@ export default {
             fadeOutClass: false,
             mask: false,
             content: ''
-        }
+        };
     },
 
     created() {
@@ -142,7 +142,7 @@ export default {
             button {
                 border: none;
                 font-size: 16px;
-                padding: 15px 0;
+                padding: 10px 0;
                 border-radius: 0;
             }
         }

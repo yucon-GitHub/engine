@@ -18,7 +18,7 @@ module.exports = {
         port: 8080,
         proxy: {
             '/api': {
-                target: 'http://py.dev.yatiku.com/',
+                target: '',
                 // target: 'http://192.168.99.116:8060',
                 changeOrigin: true,
                 pathRewrite: {

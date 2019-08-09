@@ -28,6 +28,7 @@
 
 <script>
 import { environment, schema, scrollBottom } from '@/utils/util';
+import { testApi } from '../api/home';
 import { mapState } from 'vuex';
 
 const modal = () => import('@/components/modal');
@@ -55,7 +56,7 @@ export default {
 
     created() {
         console.log(environment().isAndroid);
-
+        testApi();
         /* 轻提示
          * type 支持的类型为 none, success, error, success
          */
@@ -127,6 +128,7 @@ export default {
                 this.$toast.hide();
             }, duration);
         }
+
     }
 };
 </script>

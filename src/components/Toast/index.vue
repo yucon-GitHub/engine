@@ -2,7 +2,8 @@
     <div id="Toast" :class="{'fade-out' : fadeOutClass}">
         <div :class="{'mask' : mask, 'ToastMask' : type !== 'alert' && mask}">
 
-            <section class="toast-title left-top-center text-center">
+            <!--  toast container -->
+            <section class="toast-title left-top-center text-center" v-if="type !== 'alert'">
                 <div class="loading-boll" v-if="type === 'loading'"></div>
                 <div class="toast-icon" v-else-if="['success', 'error'].includes(type)">
                     <img :src="iconPath" alt="" />
@@ -10,6 +11,7 @@
                 <div>{{ title }}</div>
             </section>
 
+            <!-- alert container  -->
             <section v-if="type === 'alert'" class="alert left-top-center">
                 <div class="content">
                     {{title}}
@@ -88,7 +90,7 @@ export default {
     }
 
     .toast-title {
-        background-color: rgba(0, 0, 0, .7);
+        background-color: rgba($black, .9);
         padding: 10px 30px;
         border-radius: 4px;
         color: $white;

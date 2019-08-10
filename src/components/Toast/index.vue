@@ -91,7 +91,7 @@ export default {
 
     .toast-title {
         background-color: rgba($black, .9);
-        padding: 10px 30px;
+        padding: 10px 12px;
         border-radius: 4px;
         color: $white;
         animation: fadeIn .3s ease;
@@ -117,14 +117,16 @@ export default {
         border-radius: 50%;
         background: $warning;
         box-shadow: 0 0 3px 3px $white, 0 0 1px 1px $black inset ;
-        animation: loadingRota 1s linear infinite;
+        animation: loadingRota 2s linear infinite;
         @keyframes loadingRota {
+            50% { box-shadow: 0 0 3px 3px $danger, 0 0 2px 2px $danger inset; }
             to { transform: rotate(360deg); }
         }
     }
     .toast-icon {
         img {
             width: 50px;
+            margin: 0 10px;
         }
     }
 

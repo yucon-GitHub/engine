@@ -125,7 +125,7 @@ button {
     border: 1px solid $main;
     padding:10px 25px;
     letter-spacing: 1px;
-    cursor: pointer;
+    // cursor: pointer;
     color: $main;
     &[type="primary"] {
         background: $main;
@@ -140,6 +140,7 @@ button {
     // 点击反馈
     &:active {
         filter: brightness(0.8);
+        transform: scale(.95);
     }
 }
 

@@ -78,7 +78,7 @@ export default {
             this.index += 1;
 
             // loading
-            this.$toast(this.index, 'loading');
+            this.$toast(`正在加载${this.index}`, 'loading');
 
             // hide() 用于关闭 type = loading 的 toast
             setTimeout(() => {

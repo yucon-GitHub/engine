@@ -1,11 +1,14 @@
 <template>
     <div class="home">
-        <p class="cl-main">Home</p>
+        <h1 class="cl-main fz-30">Home</h1>
         <span class="iconfont iconhome"></span>
+
+        <!-- fliter -->
         <p>{{ 50.1650 | toFixed }}</p>
         <p>{{ '1560843960' | formatTime }}</p>
         <div v-for="item in list" :key="item.state">{{ item.state | stateType(['已结束', '进行中', '已超时']) }}</div>
 
+        <!-- modal components -->
         <modal modalTitle="活动申请" confirmText="好的" v-model="modalFlag" @closeModal="modalFlag = false" :mask="false">
             <div slot="content">
                 <div>asdasdasd</div>
@@ -16,13 +19,32 @@
 
         <router-link :to="{ name: 'user/about' }">router-path</router-link>
 
+        <!-- toast btn -->
         <div class="flex flex-column-center flex-warp btn-group">
             <button @click="showToast">提示</button>
             <button @click="showAlert">alert</button>
             <button @click="showOther">其他toast 测试</button>
             <button @click="formFilter">表单验证</button>
         </div>
-        <div style="height: 1000px;"></div>
+
+        <!-- swiper -->
+        <div class="banner-wapper mt-20">
+            <ul 
+            class="swiper-container" 
+            :style="{'transform': touchuMoveType === 'slide-left' ?
+            `translateX(${currentIndex * -100}%)` : touchuMoveType === 'slide-right' ?
+            `translateX(${currentIndex * -100}%)` : ''}">
+                <li 
+                    class="swiper-slide" 
+                    v-for="(item, index) in bannerList" 
+                    :key="index" 
+                    @touchstart="touchStart"
+                    @touchend="touchEnd">
+                    <div class="content radius-10" :class="{'current-active' : currentIndex === index}">{{item}}</div>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </template>
 
@@ -40,17 +62,24 @@ export default {
     },
     data() {
         return {
-            timer: null,
+            // 多状态模板显示
             list: [
                 { state: 1 },
                 { state: 0 },
                 { state: 2 }
             ],
+            // modal 组件
             modalFlag: false,
-            index: 1,
+            // 表单过滤
             name: 'hah',
-            phone: '',
-            loadMore: true
+            phone: '1562645588',
+            // 下拉加载
+            loadMore: true,
+            // 幻灯片滑动
+            bannerList: [1, 2, 3, 4, 5, 6, 7, 8],
+            touchStartPos: null, // 起始X
+            touchuMoveType: '', // 活动方向
+            currentIndex: 0,
         };
     },
 
@@ -75,10 +104,9 @@ export default {
     methods: {
         /* 轻提示 loading */
         showToast() {
-            this.index += 1;
 
             // loading
-            this.$toast(`正在加载${this.index}`, 'loading');
+            this.$toast('正在加载', 'loading');
 
             // hide() 用于关闭 type = loading 的 toast
             setTimeout(() => {
@@ -113,9 +141,10 @@ export default {
         formFilter() {
             schema.bind(this)({
                 name: { require: true, message: '请输入您的姓名' },
-                phone: { require: true, message: '请输入您的手机号', regexp: /^1\d{10}$/, regexpMsg: '手机号类型错误' }
+                phone: { require: true, message: '请输入您的手机号', regexp: /^1\d{10}$/, regexpMsg: '手机号格式错误' }
             }).then(() => {
             // do something
+            console.log('验证通过');
             });
         },
 
@@ -129,8 +158,29 @@ export default {
                 this.loadMore = true;
                 this.$toast.hide();
             }, duration);
-        }
+        },
 
+        touchStart(event) {
+            // 触摸起始坐标 X
+            this.touchStartPos = event.changedTouches[0].clientX;
+        },
+        
+        touchEnd(event) {
+            // 触摸结束坐标 X
+            let touchEndPos = event.changedTouches[0].clientX;
+            // 计算滑动距离，小于35 不切换
+            let moveLeft = touchEndPos - this.touchStartPos < 0 ? -(touchEndPos - this.touchStartPos) : touchEndPos - this.touchStartPos;
+            if (moveLeft < 35) return;
+
+            // 检测滑动方向 currentIndex = 当前Index
+            if (touchEndPos < this.touchStartPos && this.currentIndex < this.bannerList.length - 1) {
+                this.touchuMoveType = 'slide-left';
+                this.currentIndex += 1;
+            } else if (touchEndPos > this.touchStartPos && this.currentIndex >= 1) {
+                this.touchuMoveType = 'slide-right';
+                this.currentIndex -= 1;
+            }
+        }
     }
 };
 </script>
@@ -147,6 +197,44 @@ export default {
 .btn-group {
     button {
         margin: 5px;
+    }
+}
+
+.banner-wapper {
+    width: 100%;
+    margin: 20px auto;  
+    overflow: hidden;
+    
+    .swiper-container {
+        display: flex;
+        transition: .5s;
+        margin: 10px 30px;
+
+        .swiper-slide {
+            flex: 0 0 auto; 
+            width: 100%;
+            padding: 0 10px;
+
+            .content {
+                width: 100%;
+                height: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid $success;
+                background: linear-gradient(to right, $danger, $warning);
+                transition: all .3s;
+                
+                &.current-active {
+                    animation: scale .5s ease forwards;
+
+                    @keyframes scale {
+                        to { transform: scale(1.1); }
+                    }
+                    
+                }
+            }
+        }
     }
 }
 </style>

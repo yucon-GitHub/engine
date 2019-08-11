@@ -121,8 +121,8 @@ export const schema = function(testParams = {}) {
             }
 
             // 检测当前对象是否有正则判断
-            if (currentItem.regexp !== undefined && !currentItem.regexp.test(key) && currentItem.require) {
-                this.$toast(currentItem.regexp);
+            if (currentItem.hasOwnProperty('regexp') && !currentItem.regexp.test(key) && currentItem.require) {
+                this.$toast(currentItem.regexpMsg);
                 reject(new Error('验证不通过'));
                 break;
             }

@@ -21,11 +21,11 @@ li { list-style: none; }
 @each $name,
 $color in (black: $black, white: $white, white-slow: $white-slow, basic: $basic, second: $second, main: $main,
     main-slow: $main-slow, main-deep: $main-deep, success: $success, warning: $warning, danger: $danger, error: $error, active: $active) {
-    .color-#{ $name } {
+    .color-#{ '' + $name } {
         color: $color;
     }
 
-    .back-color-#{ $name } {
+    .back-color-#{ '' + $name } {
         background-color: $color;
     }
 }

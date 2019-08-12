@@ -7,15 +7,15 @@
 -->
 <template>
     <transition name="fade">
-        <div :class="{'mask': mask}" v-if="value">
+        <div :class="{'mask hhh': mask}" v-if="value" @click.self="handleMask">
             <div
                 class="left-top-center modal-component radius-4"
                 :class="{'modal-border': !mask}">
                 <div class="title fz-17 color-main mt-10 mb-10">{{ modalTitle }}</div>
                 <slot name="content"></slot>
                 <div class="but-group flex flex-end" v-if="showButton">
-                    <button class="mr-20" v-if="showCancel" @click="cancel">{{ cancelText }}</button>
-                    <button type="primary" v-if="showConfirm" @click="confirm">{{ confirmText }}</button>
+                    <button class="mr-20" v-if="showCancel" @click.stop="cancel">{{ cancelText }}</button>
+                    <button type="primary" v-if="showConfirm" @click.stop="confirm">{{ confirmText }}</button>
                 </div>
             </div>
         </div>
@@ -56,7 +56,12 @@ export default {
             type: Boolean,
             default: true
         },
-        modalTitle: String
+        modalTitle: String,
+        // 是否点击mask 关闭
+        maskClick: {
+            type: Boolean,
+            default: false
+        }
     },
     model: {
         prop: 'value',
@@ -67,11 +72,16 @@ export default {
             this.$emit('input', false);
             this.$emit('closeModal');
         },
+
         confirm() {
             console.log('confirm');
+        },
+
+        handleMask() {
+            this.$emit('input', !this.maskClick);
         }
     }
-}
+};
 </script>
 
 <style lang="scss" scoped>

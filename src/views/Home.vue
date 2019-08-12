@@ -9,7 +9,7 @@
         <div v-for="item in list" :key="item.state">{{ item.state | stateType(['已结束', '进行中', '已超时']) }}</div>
 
         <!-- modal components -->
-        <modal modalTitle="活动申请" confirmText="好的" v-model="modalFlag" @closeModal="modalFlag = false" :mask="false">
+        <modal modalTitle="活动申请" confirmText="好的" v-model="modalFlag" @closeModal="modalFlag = false" :mask="true" :maskClick="true">
             <div slot="content">
                 <div>asdasdasd</div>
             </div>
@@ -29,15 +29,15 @@
 
         <!-- swiper -->
         <div class="banner-wapper mt-20">
-            <ul 
-            class="swiper-container" 
-            :style="{'transform': touchuMoveType === 'slide-left' ?
-            `translateX(${currentIndex * -100}%)` : touchuMoveType === 'slide-right' ?
+            <ul
+            class="swiper-container"
+            :style="{'transform': touchMoveType === 'slide-left' ?
+            `translateX(${currentIndex * -100}%)` : touchMoveType === 'slide-right' ?
             `translateX(${currentIndex * -100}%)` : ''}">
-                <li 
-                    class="swiper-slide" 
-                    v-for="(item, index) in bannerList" 
-                    :key="index" 
+                <li
+                    class="swiper-slide"
+                    v-for="(item, index) in bannerList"
+                    :key="index"
                     @touchstart="touchStart"
                     @touchend="touchEnd">
                     <div class="content radius-10" :class="{'current-active' : currentIndex === index}">{{item}}</div>
@@ -78,8 +78,8 @@ export default {
             // 幻灯片滑动
             bannerList: [1, 2, 3, 4, 5, 6, 7, 8],
             touchStartPos: null, // 起始X
-            touchuMoveType: '', // 活动方向
-            currentIndex: 0,
+            touchMoveType: '', // 活动方向
+            currentIndex: 0
         };
     },
 
@@ -104,7 +104,6 @@ export default {
     methods: {
         /* 轻提示 loading */
         showToast() {
-
             // loading
             this.$toast('正在加载', 'loading');
 
@@ -144,7 +143,7 @@ export default {
                 phone: { require: true, message: '请输入您的手机号', regexp: /^1\d{10}$/, regexpMsg: '手机号格式错误' }
             }).then(() => {
             // do something
-            console.log('验证通过');
+                console.log('验证通过');
             });
         },
 
@@ -164,7 +163,7 @@ export default {
             // 触摸起始坐标 X
             this.touchStartPos = event.changedTouches[0].clientX;
         },
-        
+
         touchEnd(event) {
             // 触摸结束坐标 X
             let touchEndPos = event.changedTouches[0].clientX;
@@ -174,10 +173,10 @@ export default {
 
             // 检测滑动方向 currentIndex = 当前Index
             if (touchEndPos < this.touchStartPos && this.currentIndex < this.bannerList.length - 1) {
-                this.touchuMoveType = 'slide-left';
+                this.touchMoveType = 'slide-left';
                 this.currentIndex += 1;
             } else if (touchEndPos > this.touchStartPos && this.currentIndex >= 1) {
-                this.touchuMoveType = 'slide-right';
+                this.touchMoveType = 'slide-right';
                 this.currentIndex -= 1;
             }
         }
@@ -202,16 +201,16 @@ export default {
 
 .banner-wapper {
     width: 100%;
-    margin: 20px auto;  
+    margin: 20px auto;
     overflow: hidden;
-    
+
     .swiper-container {
         display: flex;
         transition: .5s;
         margin: 10px 30px;
 
         .swiper-slide {
-            flex: 0 0 auto; 
+            flex: 0 0 auto;
             width: 100%;
             padding: 0 10px;
 
@@ -224,14 +223,13 @@ export default {
                 border: 1px solid $success;
                 background: linear-gradient(to right, $danger, $warning);
                 transition: all .3s;
-                
+
                 &.current-active {
                     animation: scale .5s ease forwards;
 
                     @keyframes scale {
                         to { transform: scale(1.1); }
                     }
-                    
                 }
             }
         }

@@ -3,9 +3,17 @@ import Router from 'vue-router';
 import Home from '../views/Home.vue';
 import errorPage from '@/views/404.vue';
 import userModule from './module/user'; // user路由模块
-
 Vue.use(Router);
-
+// 重组路由模块
+function construction() {
+    let routerModule = [...userModule];
+    routerModule.forEach(item => {
+        item.meta = new Object;
+        item.meta.title = item.title;
+        item.component = () => import(`@/views${item.filePath}.vue`)
+    });
+    return routerModule;
+}
 export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
@@ -23,12 +31,11 @@ export default new Router({
             name: 'home',
             component: Home,
             meta: {
-                title: 'HOME',
-                index: 0
+                title: 'HOME'
             }
         },
 
-        ...userModule
+        ...construction()
     ],
 
     scrollBehavior(to, from, savedPosition) {

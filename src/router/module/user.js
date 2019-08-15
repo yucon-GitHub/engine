@@ -7,14 +7,19 @@
  *
  */
 
-export default [
+ export default [
+     /**
+     * @Json 路由模块
+     * @params：
+     * filePath = 文件路径，页面文件夹views目录下
+     * path = 访问路径
+     * name = 路由命名
+     * title = 页面标题
+     */
     {
+        filePath: '/user/about',
         path: '/user/about',
         name: 'user/about',
-        meta: {
-            title: '关于我们',
-            index: 1
-        },
-        component: () => import(/* webpackChunkName: "about" */ '@/views/user/about.vue')
+        title: '关于我们'
     }
-];
+ ]

@@ -17,7 +17,7 @@ export default {
 
     watch: {
         '$route'(to, from) {
-            this.transitionName = to.meta.index < from.meta.index ? 'slide-left' : 'slide-right';
+            this.transitionName = to.query.time < from.query.time ? 'slide-left' : 'slide-right';
         }
     }
 };

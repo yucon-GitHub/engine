@@ -37,7 +37,16 @@ console.log(process.env.NODE_ENV, vconsole);
 /* 路由守卫 */
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title || 'T-JUNCTION';
-    next({ query: { time: new Date().valueOf() } });
+    if (!to.query.hasOwnProperty('time')) {
+        let query = to.query;
+        query.time = new Date().getTime();
+        next({
+            path: to.path,
+            query
+        });
+    } else {
+        next();
+    }
 });
 
 new Vue({

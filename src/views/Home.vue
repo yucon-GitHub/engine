@@ -28,23 +28,11 @@
         </div>
 
         <!-- swiper -->
-        <div class="banner-wapper mt-20">
-            <ul
-            class="swiper-container"
-            :style="{'transform': touchMoveType === 'slide-left' ?
-            `translateX(${currentIndex * -100}%)` : touchMoveType === 'slide-right' ?
-            `translateX(${currentIndex * -100}%)` : ''}">
-                <li
-                    class="swiper-slide"
-                    v-for="(item, index) in bannerList"
-                    :key="index"
-                    @touchstart="touchStart"
-                    @touchend="touchEnd">
-                    <div class="content radius-10" :class="{'current-active' : currentIndex === index}">{{item}}</div>
-                </li>
-            </ul>
-        </div>
-
+        <swiper :list="[1, 2]">
+            <div slot="item" v-for="(item, index) in [1, 2]" :key="index">
+                <div class="content">{{item}}</div>
+            </div>
+        </swiper>
     </div>
 </template>
 
@@ -54,11 +42,13 @@ import { testApi } from '../api/home';
 import { mapState } from 'vuex';
 
 const modal = () => import('@/components/modal');
+const swiper = () => import('@/components/swiper');
 
 export default {
     name: 'home',
     components: {
-        modal
+        modal,
+        swiper
     },
     data() {
         return {
@@ -74,12 +64,7 @@ export default {
             name: 'hah',
             phone: '1562645588',
             // 下拉加载
-            loadMore: true,
-            // 幻灯片滑动
-            bannerList: [1, 2, 3, 4, 5, 6, 7, 8],
-            touchStartPos: null, // 起始X
-            touchMoveType: '', // 活动方向
-            currentIndex: 0
+            loadMore: true
         };
     },
 
@@ -157,28 +142,6 @@ export default {
                 this.loadMore = true;
                 this.$toast.hide();
             }, duration);
-        },
-
-        touchStart(event) {
-            // 触摸起始坐标 X
-            this.touchStartPos = event.changedTouches[0].clientX;
-        },
-
-        touchEnd(event) {
-            // 触摸结束坐标 X
-            let touchEndPos = event.changedTouches[0].clientX;
-            // 计算滑动距离，小于35 不切换
-            let moveLeft = touchEndPos - this.touchStartPos < 0 ? -(touchEndPos - this.touchStartPos) : touchEndPos - this.touchStartPos;
-            if (moveLeft < 35) return;
-
-            // 检测滑动方向 currentIndex = 当前Index
-            if (touchEndPos < this.touchStartPos && this.currentIndex < this.bannerList.length - 1) {
-                this.touchMoveType = 'slide-left';
-                this.currentIndex += 1;
-            } else if (touchEndPos > this.touchStartPos && this.currentIndex >= 1) {
-                this.touchMoveType = 'slide-right';
-                this.currentIndex -= 1;
-            }
         }
     }
 };
@@ -196,43 +159,6 @@ export default {
 .btn-group {
     button {
         margin: 5px;
-    }
-}
-
-.banner-wapper {
-    width: 100%;
-    margin: 20px auto;
-    overflow: hidden;
-
-    .swiper-container {
-        display: flex;
-        transition: .5s;
-        margin: 10px 30px;
-
-        .swiper-slide {
-            flex: 0 0 auto;
-            width: 100%;
-            padding: 0 10px;
-
-            .content {
-                width: 100%;
-                height: 100px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border: 1px solid $success;
-                background: linear-gradient(to right, $danger, $warning);
-                transition: all .3s;
-
-                &.current-active {
-                    animation: scale .5s ease forwards;
-
-                    @keyframes scale {
-                        to { transform: scale(1.1); }
-                    }
-                }
-            }
-        }
     }
 }
 </style>

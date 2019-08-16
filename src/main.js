@@ -4,7 +4,7 @@ import router from '@/router/index';
 import store from './store';
 import 'lib-flexible';
 import { ToastComponents, AlertComponents } from '@/components/Toast';
-
+import Vconsole from 'vconsole';
 import './static/style/reset.scss';
 
 // 工具类--过滤器函数集
@@ -30,11 +30,14 @@ Vue.directive('focus', {
     }
 });
 
+let vconsole = null;
+if (process.env.NODE_ENV === 'development') vconsole = new Vconsole();
+console.log(process.env.NODE_ENV, vconsole);
+
 /* 路由守卫 */
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title || 'T-JUNCTION';
-    // if (router.query.time == '' || router.query.time == undefined) router.query.time = new Date().getTime() / 1000;
-    next();
+    next({ query: { time: new Date().valueOf() } });
 });
 
 new Vue({

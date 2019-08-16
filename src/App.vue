@@ -14,9 +14,7 @@ export default {
             transitionName: 'slide-right'
         };
     },
-    methods: {
 
-    },
     watch: {
         '$route'(to, from) {
             this.transitionName = to.meta.index < from.meta.index ? 'slide-left' : 'slide-right';
@@ -29,6 +27,7 @@ export default {
     width: 100%;
     min-height: 100%;
     position: relative;
+
 }
 .slide-right-enter-active {
     animation: enter .3s forwards;

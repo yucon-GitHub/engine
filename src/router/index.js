@@ -3,10 +3,18 @@ import Router from 'vue-router';
 import Home from '../views/Home.vue';
 import errorPage from '@/views/404.vue';
 import userModule from './module/user'; // user路由模块
+import courseModule from './module/course'; // 课程路由模块
+import activityModule from './module/activity'; // 课程路由模块
 Vue.use(Router);
+
 // 重组路由模块
 function construction() {
-    let routerModule = [...userModule];
+    // 所有路由
+    let routerModule = [
+        ...userModule,
+        ...courseModule,
+        ...activityModule
+    ];
     routerModule.forEach(item => {
         item.meta = new Object;
         item.meta.title = item.title;
@@ -14,6 +22,7 @@ function construction() {
     });
     return routerModule;
 }
+
 export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,

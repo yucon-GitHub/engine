@@ -17,7 +17,7 @@
 
         <div class="box back-color-main" @click="modalFlag = true"></div>
 
-        <router-link :to="{ name: 'user/about' }">router-path</router-link>
+        <router-link :to="{ name: 'userAbout' }">router-path</router-link>
 
         <!-- toast btn -->
         <div class="flex flex-column-center flex-warp btn-group">
@@ -184,11 +184,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.boll {
-    :hover {
-        fill: red;
-    }
-}
 .box{
     width: 50px;
     height: 50px;

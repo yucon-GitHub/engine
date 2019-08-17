@@ -1,5 +1,5 @@
 /**
- * @fileName: user 路由文件
+ * @fileName: activity 路由文件
  * @author: yucon
  * @createdTime: 2019-06-14
  * @remark: 按模块文件分路由，统一导出到index配置路由
@@ -7,7 +7,7 @@
  *
  */
 
- export default [
+export default [
     /**
      * @Json 路由模块
      * @params：
@@ -17,9 +17,15 @@
      * title = 页面标题
      */
     {
-        title: '关于我们',
-        filePath: '/user/about',
-        path: '/user/about',
-        name: 'userAbout',
+        title: '分享',
+        filePath: '/activity/shareAppMessage',
+        path: '/activity/shareAppPage',
+        name: 'activityShare',
+    },
+    {
+        title: '广告页面',
+        filePath: '/activity/notice',
+        path: '/activity/notice',
+        name: 'activityNotice'
     }
 ]

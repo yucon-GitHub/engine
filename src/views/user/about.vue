@@ -1,6 +1,6 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-      <div style="height: 1000px;"></div>
+    <router-link :to="{ name: 'courseIndex' }">To course/index</router-link>
   </div>
 </template>

@@ -4,8 +4,8 @@ import template from './index.vue';
 const ComponentsController = Vue.extend(template);
 
 /**
- *  [method] Toast 组件
- *  [params] 配置参数：
+ *  @method Toast 组件
+ *  @params 配置参数：
  *  title = '提示文案'
  *  type = 显示类型（支持 'none', 'success', 'error', 'loading')
  *  mask = 遮罩层 (true 时禁止用户其他行为)

@@ -3,14 +3,16 @@ import Router from 'vue-router';
 import Home from '../views/Home.vue';
 import errorPage from '@/views/404.vue';
 import userModule from './module/user'; // user路由模块
+import articleModule from './module/article'; // user路由模块
 Vue.use(Router);
+
 // 重组路由模块
 function construction() {
-    let routerModule = [...userModule];
+    let routerModule = [...userModule, ...articleModule];
     routerModule.forEach(item => {
         item.meta = new Object;
         item.meta.title = item.title;
-        item.component = () => import(`@/views${item.filePath}.vue`)
+        item.component = () => import(`@/views${item.filePath}.vue`);
     });
     return routerModule;
 }

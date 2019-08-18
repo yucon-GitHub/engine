@@ -80,7 +80,7 @@ function _axiosConfig(prefix, config) {
     config['Content-Type'] = ContentType[config['ContentType']];
     axios.defaults.withCredentials = true;
     // 开发环境默认使用proxy代理请求
-    axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? `${reConfig.apiPrefix}${prefix}/api` : `${reConfig.apiPrefix}${prefix}`;
+    axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? `${reConfig.apiPrefix}${prefix}/proxyApi` : `${reConfig.apiPrefix}${prefix}`;
     axios.defaults.timeout = 5000;
     config = {
         'headers': { 'Content-Type': config['Content-Type'] || DEFAULT_HEADER['Content-Type'] },

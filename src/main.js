@@ -33,6 +33,7 @@ Vue.directive('focus', {
 let vconsole = null;
 if (process.env.NODE_ENV === 'development') vconsole = new Vconsole();
 console.log(process.env.NODE_ENV, vconsole);
+console.log(process.env, '**--**');
 
 /* 路由守卫 */
 router.beforeEach((to, from, next) => {

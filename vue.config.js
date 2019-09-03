@@ -14,15 +14,19 @@ module.exports = {
         console.log('项目正在启动!!!');
         console.log('项目正在启动!!!');
     },
+    configureWebpack: {
+        output: {
+			// filename: `app.js?v=${new Date().getTime()}`
+		}
+    },
     devServer: {
         port: 8080,
         proxy: {
-            '/api': {
-                target: 'http://py.dev.yatiku.com/',
-                // target: 'http://192.168.99.116:8060',
+            '/proxyApi': {
+                target: 'http://wx.xishewang.com/',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/api': '/'
+                    '^/proxyApi': '/'
                 }
             }
         }

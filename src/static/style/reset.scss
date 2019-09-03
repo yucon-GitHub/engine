@@ -23,7 +23,7 @@ $color in (black: $black, white: $white, white-slow: $white-slow, basic: $basic,
     main-slow: $main-slow, main-deep: $main-deep, success: $success, warning: $warning, danger: $danger, error: $error, active: $active) {
     .color-#{ '' + $name } {
         color: $color;
-    }
+   }
 
     .back-color-#{ '' + $name } {
         background-color: $color;

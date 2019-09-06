@@ -14,11 +14,6 @@ module.exports = {
         console.log('项目正在启动!!!');
         console.log('项目正在启动!!!');
     },
-    configureWebpack: {
-        output: {
-			// filename: `app.js?v=${new Date().getTime()}`
-		}
-    },
     devServer: {
         port: 8080,
         proxy: {

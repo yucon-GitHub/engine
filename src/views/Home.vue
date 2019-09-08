@@ -33,12 +33,14 @@
                 <div class="content">{{item}}</div>
             </div>
         </swiper>
+
+        <button @click="yuconTest">api test</button>
     </div>
 </template>
 
 <script>
 import { environment, schema, scrollBottom } from '@/utils/util';
-import { testApi } from '../api/home';
+import { testApi, testPhp } from '../api/home';
 import { mapState } from 'vuex';
 
 const modal = () => import('@/components/modal');
@@ -70,7 +72,7 @@ export default {
 
     created() {
         console.log(environment().isAndroid);
-        testApi();
+        this.yuconTest();
         /* 轻提示
          * type 支持的类型为 none, success, error, success
          */
@@ -142,6 +144,13 @@ export default {
                 this.loadMore = true;
                 this.$toast.hide();
             }, duration);
+        },
+
+        yuconTest() {
+            let params = {
+                id: 1
+            };
+            testPhp(params);
         }
     }
 };

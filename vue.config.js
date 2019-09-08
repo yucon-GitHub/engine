@@ -23,7 +23,7 @@ module.exports = {
         port: 8080,
         proxy: {
             '/proxyApi': {
-                target: 'http://wx.xishewang.com/',
+                target: 'http://www.yucon.com/',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/proxyApi': '/'

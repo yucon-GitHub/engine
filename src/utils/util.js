@@ -101,7 +101,7 @@ function _mine(option, value) {
  *  @params: testParams = 需检测的对象；
  *  @key: 参数的key 常为： require (布尔值) 是否必填； regexp (正则规则)； message 参数必填，值为空时提示语； regexpMsg 正则不匹配时提示语；
  */
-export const schema = function(testParams = {}) {
+export const validateForm = function(testParams = {}) {
     return new Promise((resolve, reject) => {
         // 检测通过的对象长度
         let passNum = 0;
@@ -144,8 +144,23 @@ export const scrollBottom = function(callback) {
     window.addEventListener('scroll', () => {
         // 滚动条距离顶部位置
         let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-        if (scrollTop + windowHeight + 100 >= domHeight) {
+        if (scrollTop + windowHeight + 150 >= domHeight) {
             callback && callback();
         }
     });
 };
+
+/**
+ * 将地址search 参数转换为json
+ */
+export let searchParams = (search = location.search) => {
+    if (!search) return {};
+    let params = {};
+    let str = search.includes("?") ? search.substr(1) : search;
+    let strSplit = str.split("&");
+
+    strSplit.map(item => params[item.split("=")[0]] = decodeURIComponent(item.split("=")[1]));
+
+    return params;
+}
+

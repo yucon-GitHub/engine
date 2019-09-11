@@ -20,20 +20,8 @@ Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key]);
 });
 
-/*
- * 自定义指令：
- */
-// 聚焦
-Vue.directive('focus', {
-    inserted: function(el) {
-        el.focus();
-    }
-});
-
-let vconsole = null;
-if (process.env.NODE_ENV === 'development') vconsole = new Vconsole();
-console.log(process.env.NODE_ENV, vconsole);
-console.log(process.env, '**--**');
+if (process.env.NODE_ENV === 'development') new Vconsole();
+console.log(process.env.NODE_ENV);
 
 /* 路由守卫 */
 router.beforeEach((to, from, next) => {

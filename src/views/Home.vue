@@ -42,6 +42,7 @@
 import { environment, schema, scrollBottom } from '@/utils/util';
 import { testApi, testPhp } from '../api/home';
 import { mapState } from 'vuex';
+import { searchParams } from '@/utils/util';
 
 const modal = () => import('@/components/modal');
 const swiper = () => import('@/components/swiper');
@@ -72,6 +73,7 @@ export default {
 
     created() {
         console.log(environment().isAndroid);
+        console.log(searchParams(), 'params');
         this.yuconTest();
         /* 轻提示
          * type 支持的类型为 none, success, error, success
@@ -125,7 +127,7 @@ export default {
 
         // 表单合法检测
         formFilter() {
-            schema.bind(this)({
+            validateForm.bind(this)({
                 name: { require: true, message: '请输入您的姓名' },
                 phone: { require: true, message: '请输入您的手机号', regexp: /^1\d{10}$/, regexpMsg: '手机号格式错误' }
             }).then(() => {

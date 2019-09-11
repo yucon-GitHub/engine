@@ -16,7 +16,7 @@ function construction() {
         ...activityModule
     ];
     routerModule.forEach(item => {
-        item.meta = new Object;
+        item.meta = {};
         item.meta.title = item.title;
         item.component = () => import(`@/views${item.filePath}.vue`)
     });

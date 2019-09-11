@@ -9,12 +9,6 @@
             @touchend="touchEnd"
             ref="swiper">
             <slot name="item"></slot>
-            <!--<li class="swiper-slide" v-for="(item, index) in list" :key="index">-->
-                <!--<div class="content" :class="{'current-active' : currentIndex === index}">-->
-                    <!--&lt;!&ndash;<solt name="item" :item="item"></solt>&ndash;&gt;-->
-                    <!--<div>{{item}}</div>-->
-                <!--</div>-->
-            <!--</li>-->
         </div>
     </div>
 </template>

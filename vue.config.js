@@ -6,6 +6,7 @@ const resolve = dir => {
 module.exports = {
     // 生成环境部署路径，默认服务器根目录
     publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
+    assetsDir: 'static', // 静态资源存放路径，对应部署路径
     chainWebpack: config => {
         // 快捷路径地址，可自定义键值对
         config.resolve.alias.set('@', resolve('src'));

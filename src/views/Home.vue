@@ -39,10 +39,10 @@
 </template>
 
 <script>
-import { environment, schema, scrollBottom } from '@/utils/util';
-import { testApi, testPhp } from '../api/home';
+import { environment, schema, scrollBottom } from '@/utils/common';
+import { testPhp } from '../api/home';
 import { mapState } from 'vuex';
-import { searchParams } from '@/utils/util';
+import { searchParams } from '@/utils/common';
 
 const modal = () => import('@/components/modal');
 const swiper = () => import('@/components/swiper');

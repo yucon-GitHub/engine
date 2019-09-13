@@ -3,6 +3,7 @@ const path = require('path');
 const resolve = dir => {
     return path.join(__dirname, dir);
 };
+
 module.exports = {
     // 生成环境部署路径，默认服务器根目录
     publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',

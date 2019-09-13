@@ -8,7 +8,7 @@ import Vconsole from 'vconsole';
 import './static/style/reset.scss';
 
 // 工具类--过滤器函数集
-import { filters } from '@/utils/util';
+import { filters } from '@/utils/common';
 
 Vue.config.productionTip = false;
 
@@ -21,7 +21,7 @@ Object.keys(filters).forEach(key => {
 });
 
 if (process.env.NODE_ENV === 'development') new Vconsole();
-console.log(process.env.NODE_ENV);
+console.log(process.env.NODE_ENV, process.env);
 
 /* 路由守卫 */
 router.beforeEach((to, from, next) => {

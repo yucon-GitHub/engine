@@ -16,6 +16,7 @@ module.exports = {
         console.log('项目正在启动!!!');
         console.log('项目正在启动!!!');
     },
+    // 本地环境代理地址
     devServer: {
         port: 8080,
         proxy: {

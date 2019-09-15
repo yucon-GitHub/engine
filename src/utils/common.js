@@ -9,8 +9,8 @@
  * @remark: 连接符可自定义
  */
 export function formatTime(timeStamp, fmt = 'yyyy.MM.dd hh:mm') {
-    var date = new Date(timeStamp * 1000);
-    var o = {
+    let date = new Date(timeStamp * 1000);
+    let o = {
         'M+': date.getMonth() + 1, // 月份
         'd+': date.getDate(), // 日
         'h+': date.getHours(), // 小时
@@ -22,7 +22,7 @@ export function formatTime(timeStamp, fmt = 'yyyy.MM.dd hh:mm') {
     if (/(y+)/.test(fmt)) {
         fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
     }
-    for (var k in o) {
+    for (let k in o) {
         if (new RegExp('(' + k + ')').test(fmt)) {
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
         }
@@ -153,7 +153,7 @@ export const scrollBottom = function(callback) {
 /**
  * 将地址search 参数转换为json
  */
-export let searchParams = (search = location.search) => {
+export const searchParams = (search = location.search) => {
     if (!search) return {};
     let params = {};
     let str = search.includes("?") ? search.substr(1) : search;

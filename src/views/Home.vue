@@ -149,7 +149,7 @@ export default {
 
         yuconTest() {
             let params = {
-                id: 1
+                id: 2
             };
             testPhp(params);
         }

@@ -6,9 +6,9 @@ import { Toast, ToastHide } from '@/components/Toast';
 
 /**
  * axios 二次封装
- * @params: prefix = 请求域名前缀符；config = 请求配置，目前支持loading，请求头content-Type
+ * @params: prefix = 请求域名前缀符(API版本号)；config = 请求配置，目前支持loading，请求头Content-Type
  */
-export default function(prefix = '', config = {}) {
+export default function(prefix = reConfig.apiPrefix, config = {}) {
     // 请求携带是否需要loading
     let { loading } = config;
     // 创建一个axios实例 config、prefix 为独立请求的配置
@@ -34,7 +34,7 @@ export default function(prefix = '', config = {}) {
                     // 跳转404或登陆页面
                     name: '404'
                 });
-                return false;
+                return;
             }
             // 错误提示
             if (response.data.message && response.data.code !== 200) {
@@ -80,7 +80,7 @@ function _axiosConfig(prefix, config) {
     config['Content-Type'] = ContentType[config['ContentType']];
     axios.defaults.withCredentials = true;
     // 开发环境默认使用proxy代理请求
-    axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? `${reConfig.apiPrefix}${prefix}/proxyApi` : `${reConfig.apiPrefix}${prefix}`;
+    axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? `${prefix}/proxyApi` : `${reConfig.baseUrl}${prefix}`;
     axios.defaults.timeout = 5000;
     config = {
         'headers': { 'Content-Type': config['Content-Type'] || DEFAULT_HEADER['Content-Type'] },

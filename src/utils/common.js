@@ -94,7 +94,7 @@ function _mine(option, value) {
         }
     }
     return false;
-}
+};
 
 /**
  *  @method: schema = 调用方法时绑定当前上下文

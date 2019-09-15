@@ -39,10 +39,9 @@
 </template>
 
 <script>
-import { environment, schema, scrollBottom } from '@/utils/common';
-import { testPhp } from '../api/home';
+import { environment, validateForm, scrollBottom, searchParams } from '@/utils/common';
+import { testPhp } from '@/api/home';
 import { mapState } from 'vuex';
-import { searchParams } from '@/utils/common';
 
 const modal = () => import('@/components/modal');
 const swiper = () => import('@/components/swiper');

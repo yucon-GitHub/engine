@@ -8,7 +8,7 @@
  * @method: 格式化时间戳 格式 "yyyy.MM.dd hh:mm:ss S"
  * @remark: 连接符可自定义
  */
-export function formatTime(timeStamp, fmt = 'yyyy.MM.dd hh:mm') {
+export const formatTime = (timeStamp, fmt = 'yyyy.MM.dd hh:mm') => {
     let date = new Date(timeStamp * 1000);
     let o = {
         'M+': date.getMonth() + 1, // 月份
@@ -28,13 +28,13 @@ export function formatTime(timeStamp, fmt = 'yyyy.MM.dd hh:mm') {
         }
     }
     return fmt;
-}
+};
 
 /**
  * @method: 倒计时格式化
  * @remark: 秒级时间戳
  */
-export function countSeconds(second = 86400) {
+export const countSeconds = (second = 86400) => {
     let s = parseInt(second % 3600 % 60);
     s = s < 10 ? `0${s}` : s;
     let m = parseInt(second % 3600 / 60);
@@ -47,7 +47,7 @@ export function countSeconds(second = 86400) {
     } else {
         return `${d} 天 ${h} 小时 ${m} 分钟 ${s} 秒`;
     }
-}
+};
 
 /**
  * filters 全局过滤器
@@ -94,7 +94,7 @@ function _mine(option, value) {
         }
     }
     return false;
-};
+}
 
 /**
  *  @method: schema = 调用方法时绑定当前上下文
@@ -160,7 +160,6 @@ export const searchParams = (search = location.search) => {
     let strSplit = str.split("&");
 
     strSplit.map(item => params[item.split("=")[0]] = decodeURIComponent(item.split("=")[1]));
-
     return params;
-}
+};
 

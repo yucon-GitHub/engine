@@ -110,11 +110,14 @@ export const validateForm = function(testParams = {}) {
         for (let item in testParams) {
             // 当前对象
             let currentItem = testParams[item];
+
             // 当前需检测的来源对象值
             let key = this[`${item}`];
+            // item是嵌套对象，该键为字符串，无法使用字符串直接访问，需解析
+            if (item.includes('.')) key = splitStr.bind(this)(item);
 
             // 检测对象是否必填
-            if ((key === '' || key.length === 0) && currentItem.require) {
+            if ((!key || key === '' || key.length === 0) && currentItem.require) {
                 this.$toast(currentItem.message);
                 reject(new Error('验证不通过'));
                 break;
@@ -132,6 +135,10 @@ export const validateForm = function(testParams = {}) {
         if (passNum === Object.keys(testParams).length) resolve('验证通过');
     });
 };
+// 嵌套对象分隔
+function splitStr (item) {
+    return this[item.split('.')[0]][item.split('.')[1]];
+}
 
 /**
  * @method： scrollBottom 检测滚动条置底，常用于下拉翻页预加载

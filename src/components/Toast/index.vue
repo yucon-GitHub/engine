@@ -4,7 +4,13 @@
 
             <!--  toast container -->
             <section class="toast-title left-top-center text-center" v-if="type !== 'alert'">
-                <div class="loading-boll" v-if="type === 'loading'"></div>
+                <div class="loading-boll" v-if="type === 'loading'" :class="loadingType">
+                    <div v-if="loadingType === 'collision'" class="collision-group">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
                 <div class="toast-icon" v-else-if="['success', 'error'].includes(type)">
                     <img :src="iconPath" alt="" />
                 </div>
@@ -37,7 +43,8 @@ export default {
             duration: 1500,
             fadeOutClass: false,
             mask: false,
-            content: ''
+            content: '',
+            loadingType: ['ring', 'collision', 'surround'][Math.floor(Math.random() * 3)]
         };
     },
 
@@ -108,21 +115,111 @@ export default {
     }
 
     .loading-boll {
-        width: 25px;
-        height: 25px;
-        border-style: dashed;
-        border-color: $white;
-        border-width: 3px;
-        margin: 10px auto;
-        border-radius: 50%;
-        background: $warning;
-        box-shadow: 0 0 3px 3px $white, 0 0 1px 1px $black inset ;
-        animation: loadingRota 2s linear infinite;
-        @keyframes loadingRota {
-            50% { box-shadow: 0 0 3px 3px $danger, 0 0 2px 2px $danger inset; }
-            to { transform: rotate(360deg); }
+        /*--------- 旋转 ---------*/
+        &.ring {
+            width: 25px;
+            height: 25px;
+            border-style: dashed;
+            border-color: $white;
+            border-width: 3px;
+            margin: 10px auto;
+            border-radius: 50%;
+            background: $warning;
+            box-shadow: 0 0 3px 3px $white, 0 0 1px 1px $black inset ;
+            animation: loadingRota 2s linear infinite;
+            @keyframes loadingRota {
+                50% { box-shadow: 0 0 3px 3px $danger, 0 0 2px 2px $danger inset; }
+                to { transform: rotate(360deg); }
+            }
+        }
+
+        /*--------- 球形撞击 ---------*/
+        &.collision {
+
+            .collision-group {
+                width: 100%;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                justify-content: space-between;
+                margin: 10px auto;
+            }
+
+            .collision-group div {
+                width: 13px;
+                height: 13px;
+                border-radius: 50%;
+                background-color: $white;
+            }
+
+            .collision-group div:nth-of-type(1) {
+                transform: translateX(-100%);
+                animation: left-swing 0.5s ease-in alternate infinite;
+            }
+
+            .collision-group div:nth-of-type(3) {
+                transform: translateX(-90%);
+                animation: right-swing 0.5s ease-out alternate infinite;
+            }
+
+            @keyframes left-swing {
+                50%,
+                100% {
+                    transform: translateX(90%);
+                }
+            }
+
+            @keyframes right-swing {
+                50% {
+                    transform: translateX(-90%);
+                }
+                100% {
+                    transform: translateX(100%);
+                }
+            }
+        }
+
+        /*--------- 双环旋转 ---------*/
+        &.surround {
+            display: flex;
+            width: 30px;
+            height: 30px;
+            border: 3px solid transparent;
+            border-top-color: $white;
+            border-bottom-color: $white;
+            border-radius: 50%;
+            margin: 10px auto;
+            animation: spin 1.5s linear infinite;
+
+
+            &::before {
+                content: '';
+                display: block;
+                margin: auto;
+                width: 10px;
+                height: 10px;
+                border: 3px solid $warning;
+                border-radius: 50%;
+                animation: pulse 1s alternate ease-in-out infinite;
+            }
+
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @keyframes pulse {
+                from {
+                    transform: scale(0.5);
+                }
+                to {
+                    transform: scale(1);
+                }
+            }
         }
     }
+
     .toast-icon {
         img {
             width: 50px;

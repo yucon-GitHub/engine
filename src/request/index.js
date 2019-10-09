@@ -27,7 +27,7 @@ export default function(prefix = reConfig.apiPrefix, config = {}) {
     // response 拦截器
     INSTANCES.interceptors.response.use(
         function(response) {
-            let { data } = { ...response };
+            let { data } = response;
             if (data && data.code === 404) {
                 console.log('404');
                 router.replace({

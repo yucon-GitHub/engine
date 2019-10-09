@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { environment, validateForm, scrollBottom, searchParams } from '@/utils/common';
+import { environment, validateForm, scrollBottom, searchParams, countDownText } from '@/utils/common';
 import { testPhp } from '@/api/home';
 import { mapState } from 'vuex';
 
@@ -85,6 +85,13 @@ export default {
             });
         });
         // console.log(scrollBottom());
+
+
+        // let time = 86400 * 1000;
+        // setInterval(() => {
+        //     time -= 100;
+        //     console.log(countDownText(time, 'd天h小时m分钟 s秒:ms毫秒'));
+        // }, 100);
     },
     computed: {
         ...mapState(['user_Info'])

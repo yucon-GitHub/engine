@@ -30,24 +30,42 @@ export const formatTime = (timeStamp, fmt = 'yyyy.MM.dd hh:mm') => {
     return fmt;
 };
 
+
 /**
- * @method: 倒计时格式化
- * @remark: 秒级时间戳
+ * 倒计时文本
+ * @param time = 时间差
+ * @param fmt = 格式  d:h:m s
  */
-export const countSeconds = (second = 86400) => {
-    let s = parseInt(second % 3600 % 60);
-    s = s < 10 ? `0${s}` : s;
-    let m = parseInt(second % 3600 / 60);
-    m = m < 10 ? `0${m}` : m;
-    let h = parseInt(second / 3600 % 24);
-    h = h < 10 ? `0${h}` : h;
-    let d = parseInt(second / 86400);
-    if (second < 3600) {
-        return `${m} 分钟 ${s} 秒`;
-    } else {
-        return `${d} 天 ${h} 小时 ${m} 分钟 ${s} 秒`;
+export function countDownText(time, fmt = 'd:h:m s') {
+    if (!time) return '';
+    let day = Math.floor(time / (24 * 3600 * 1000));
+    let hour = Math.floor(time / (3600 * 1000) % 24);
+    let minute = Math.floor(time % 3600000 / (60 * 1000));
+    let second = Math.floor(time / 1000 % 60);
+    let millisecond = time % 1000 / 100;
+    let o = {
+        "d+": day,
+        "h+": hour,
+        "m+": minute,
+        "s+": second,
+        "ms+": millisecond
+    };
+    for (let k in o) if (new RegExp("(" + k + ")").test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (formatNumber(o[k])) : (("00" + o[k]).substr(("" + o[k]).length)));
     }
-};
+    return fmt;
+}
+
+/**
+ * 小于9 +0
+ * @param {*} n
+ */
+
+export function formatNumber(n) {
+    n = n.toString();
+    return n[1] ? n : '0' + n;
+}
+
 
 /**
  * filters 全局过滤器

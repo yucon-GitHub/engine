@@ -7,7 +7,7 @@ module.exports = {
     },
     extends: [
         'plugin:vue/essential',
-        '@vue/standard'
+        // '@vue/standard'
     ],
     rules: {
         'indent': ["error", 4],

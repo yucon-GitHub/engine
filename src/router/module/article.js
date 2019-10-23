@@ -22,4 +22,4 @@ export default [
         name: 'articleList',
         title: '文章列表'
     }
-]
+];

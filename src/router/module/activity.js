@@ -28,4 +28,4 @@ export default [
         path: '/activity/notice',
         name: 'activityNotice'
     }
-]
+];

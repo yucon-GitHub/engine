@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../views/Home.vue';
+import notice from '../views/activity/notice.vue';
 import errorPage from '@/views/404.vue';
 import userModule from './module/user'; // user路由模块
 import courseModule from './module/course'; // 课程路由模块
@@ -18,7 +19,8 @@ function construction() {
     routerModule.forEach(item => {
         item.meta = {};
         item.meta.title = item.title;
-        item.component = () => import(`@/views${item.filePath}.vue`)
+        item.component = () =>
+            import (`@/views${item.filePath}.vue`)
     });
     return routerModule;
 }
@@ -26,8 +28,7 @@ function construction() {
 export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
-    routes: [
-        {
+    routes: [{
             path: '*',
             component: errorPage,
             redirect: { name: 'home' },
@@ -43,6 +44,16 @@ export default new Router({
                 title: 'HOME'
             }
         },
+        {
+            path: '/notice',
+            name: 'notice',
+            component: notice,
+            meta: {
+                title: 'notice'
+            }
+        },
+
+
 
         ...construction()
     ],

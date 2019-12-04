@@ -11,7 +11,8 @@ export default {
     name: 'App',
     data() {
         return {
-            transitionName: 'slide-right'
+            transitionName: 'slide-right',
+            
         };
     },
 

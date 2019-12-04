@@ -20,8 +20,8 @@ Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key]);
 });
 
-if (process.env.NODE_ENV === 'development') new Vconsole();
-console.log(process.env.NODE_ENV, process.env);
+// if (process.env.NODE_ENV === 'development') new Vconsole();
+// console.log(process.env.NODE_ENV, process.env);
 
 /* 路由守卫 */
 router.beforeEach((to, from, next) => {

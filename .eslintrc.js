@@ -23,8 +23,8 @@ module.exports = {
         'semi': ["error", "always"],
         'no-console': 'off',
         'no-debugger': 'off',
-        "no-tabs": "off",
-        "space-before-function-paren": ["error", "never"]
+        'no-tabs': 'off',
+        'space-before-function-paren': ['error', 'never']
     },
     parserOptions: {
         parser: 'babel-eslint'

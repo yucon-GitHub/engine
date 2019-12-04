@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { environment, validateForm, scrollBottom, searchParams, countDownText } from '@/utils/common';
+import { environment, validateForm, scrollBottom, searchParams, countDownText, urlToBlob } from '@/utils/common';
 import { testPhp } from '@/api/home';
 import { mapState } from 'vuex';
 
@@ -92,6 +92,11 @@ export default {
         //     time -= 100;
         //     console.log(countDownText(time, 'd天h小时m分钟 s秒:ms毫秒'));
         // }, 100);
+
+        // this.$nextTick(() => {
+        //     let url = urlToBlob(',http://resource.oss.yatiku.com/backstageSystem/babthinking/logo.png');
+        //     console.log(url, '11111***')
+        // })
     },
     computed: {
         ...mapState(['user_Info'])

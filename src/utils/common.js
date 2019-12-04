@@ -130,9 +130,10 @@ export const validateForm = function(testParams = {}) {
             let currentItem = testParams[item];
 
             // 当前需检测的来源对象值
-            let key = this[`${item}`];
+            let key = null;
             // item是嵌套对象，该键为字符串，无法使用字符串直接访问，需解析
-            if (item.includes('.')) key = splitStr.bind(this)(item);
+            if (item.includes('.')) key = splitStr(this, item);
+            else key = this[`${item}`];
 
             // 检测对象是否必填
             if ((!key || key === '' || key.length === 0) && currentItem.require) {
@@ -154,8 +155,8 @@ export const validateForm = function(testParams = {}) {
     });
 };
 // 嵌套对象分隔
-function splitStr (item) {
-    return this[item.split('.')[0]][item.split('.')[1]];
+function splitStr (context, item) {
+    return context[item.split('.')[0]][item.split('.')[1]];
 }
 
 /**
@@ -187,4 +188,15 @@ export const searchParams = (search = location.search) => {
     strSplit.map(item => params[item.split("=")[0]] = decodeURIComponent(item.split("=")[1]));
     return params;
 };
+
+// export const urlToBlob = (dataURI) => {
+//     let byteString = atob(dataURI.split(',')[1]);
+//     let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+//     let ab = new ArrayBuffer(byteString.length);
+//     let ia = new Uint8Array(ab);
+//     for (let i in byteString) {
+//         ia[i] = byteString.charCodeAt(i);
+//     }
+//     return new Blob([ab], {type: mimeString});
+// }
 

@@ -18,7 +18,7 @@ module.exports = {
     },
     // 本地环境代理地址
     devServer: {
-        port: 8080,
+        port: 8000,
         proxy: {
             '/proxyApi': {
                 target: 'http://www.yucon.com/',

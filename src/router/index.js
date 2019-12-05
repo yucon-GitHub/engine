@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../views/Home.vue';
-import notice from '../views/activity/notice.vue';
+//user
+import about from '../views/user/about.vue';
 import errorPage from '@/views/404.vue';
 import userModule from './module/user'; // user路由模块
 import courseModule from './module/course'; // 课程路由模块
@@ -31,13 +32,13 @@ export default new Router({
     routes: [{
             path: '*',
             component: errorPage,
-            redirect: { name: 'home' },
+            redirect: { name: 'about' },
             meta: {
                 title: '页面错误'
             }
         },
         {
-            path: '/',
+            path: '/home',
             name: 'home',
             component: Home,
             meta: {
@@ -45,11 +46,11 @@ export default new Router({
             }
         },
         {
-            path: '/notice',
-            name: 'notice',
-            component: notice,
+            path: '/',
+            name: 'about',
+            component: about,
             meta: {
-                title: 'notice'
+                title: '登陆'
             }
         },
 

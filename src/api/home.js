@@ -6,5 +6,6 @@
  */
 import request from '@/request/index';
 
-// 测试接口
+// 测试例子
 export const testPhp = params => request().post('/api/Test/test', params);
+export const test = params => request('', { loading: true, 'Content-Type': 'application/json' }).post('merchant/tag/list', params);

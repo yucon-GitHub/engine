@@ -22,7 +22,7 @@ module.exports = {
         port: 8000,
         proxy: {
             '/proxyApi': {
-                target: 'http://www.yucon.com/',
+                target: 'http://manage.store.chenkee.store/v1/',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/proxyApi': '/'

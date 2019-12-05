@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../views/Home.vue';
 //user
-import about from '../views/user/about.vue';
 import errorPage from '@/views/404.vue';
 import userModule from './module/user'; // user路由模块
 import courseModule from './module/course'; // 课程路由模块
@@ -45,16 +44,6 @@ export default new Router({
                 title: 'HOME'
             }
         },
-        {
-            path: '/',
-            name: 'about',
-            component: about,
-            meta: {
-                title: '登陆'
-            }
-        },
-
-
 
         ...construction()
     ],

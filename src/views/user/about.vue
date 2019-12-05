@@ -36,17 +36,17 @@ import { test } from '../../api/home';
 export default {
   name: "about",
   components:{
-    "van-area":Area,
-    "van-popup":Popup,
+    [Area.name]: Area,
+    [Popup.name]: Popup,
     
   },
   data() {
     return{
       name: "",
       phone: "",
-      address:"选择您所在的城市",
-      areaList:AreaList,
-      show:false,
+      address: "选择您所在的城市",
+      areaList: AreaList,
+      show: false,
     }
   },
   created() {

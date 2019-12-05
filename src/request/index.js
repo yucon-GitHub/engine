@@ -18,7 +18,7 @@ export default function(prefix = reConfig.apiPrefix, config = {}) {
     // request 拦截器
     INSTANCES.interceptors.request.use(
         config => {
-            if (loading) Vue.prototype.Toast.loading({ message: '加载中' });
+            if (loading) Toast.loading({ message: '加载中' });
             return config;
         },
         function(error) {
@@ -40,9 +40,9 @@ export default function(prefix = reConfig.apiPrefix, config = {}) {
             }
             // 错误提示
             if (response.data.message && response.data.code !== 200) {
-                Vue.prototype.Toast(response.data.message);
+                Toast(response.data.message);
             }
-            Vue.prototype.Toast.clear();
+            Toast.clear();
             return response.data;
         },
         function(error) {}

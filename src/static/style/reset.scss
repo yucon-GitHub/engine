@@ -151,32 +151,33 @@ $color in (black: $black, white: $white, white-slow: $white-slow, basic: $basic,
 }
 
 // 按钮默认样式
-// button {
-//     display: inline-block;
-//     border-radius: 4px;
-//     outline: 0;
-//     box-sizing: content-box;
-//     background-color: transparent;
-//     border: 1px solid $main;
-//     padding: 10px 25px;
-//     letter-spacing: 1px;
-//     // cursor: pointer;
-//     color: $main;
-//     // &[type="primary"] {
-//     //     background: $main;
-//     //     color: $white;
-//     // }
-//     &::before,
-//     &::after {
-//         border: 0;
-//         outline: 0;
-//     }
-//     // 点击反馈
-//     &:active {
-//         filter: brightness(0.8);
-//         transform: scale(.95);
-//     }
-// }
+button {
+    display: inline-block;
+    border-radius: 4px;
+    outline: 0;
+    box-sizing: content-box;
+    background-color: transparent;
+    border: 1px solid $main;
+    padding: 10px 25px;
+    letter-spacing: 1px;
+    // cursor: pointer;
+    color: $main;
+    // &[type="primary"] {
+    //     background: $main;
+    //     color: $white;
+    // }
+    &::before,
+    &::after {
+        border: 0;
+        outline: 0;
+    }
+    // 点击反馈
+    &:active {
+        filter: brightness(0.8);
+        transform: scale(.95);
+    }
+}
+
 // mask 遮罩
 .mask {
     position: fixed;

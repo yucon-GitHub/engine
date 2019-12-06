@@ -17,9 +17,9 @@ export default [
      * title = 页面标题
      */
     {
-        filePath: '/article/list',
-        path: '/article/list',
-        name: 'articleList',
-        title: '文章列表'
+        title: '关于我们',
+        filePath: '/Sortfour/about',
+        path: '/Sortfour/about',
+        name: 'SortfourAbout',
     }
-];
+]

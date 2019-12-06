@@ -2,19 +2,22 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../views/Home.vue';
 //user
+import about from '../views/user/about.vue';
 import errorPage from '@/views/404.vue';
-import userModule from './module/user'; // user路由模块
-import courseModule from './module/course'; // 课程路由模块
-import activityModule from './module/activity'; // 课程路由模块
+import SortoneModule from './module/Sortone'; // 排序一
+import SorttwoModule from './module/Sorttwo'; // 排序二
+import SortthreeModule from './module/Sortthree'; // 排序三
+import SortfourModule from './module/Sortfour'; // 排序四
 Vue.use(Router);
 
 // 重组路由模块
 function construction() {
     // 所有路由
     let routerModule = [
-        ...userModule,
-        ...courseModule,
-        ...activityModule
+        ...SortoneModule,
+        ...SorttwoModule,
+        ...SortthreeModule,
+        ...SortfourModule,
     ];
     routerModule.forEach(item => {
         item.meta = {};
@@ -40,6 +43,14 @@ export default new Router({
             path: '/home',
             name: 'home',
             component: Home,
+            meta: {
+                title: 'HOME'
+            }
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: about,
             meta: {
                 title: 'HOME'
             }

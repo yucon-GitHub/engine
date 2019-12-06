@@ -18,7 +18,7 @@ export default function(prefix = reConfig.apiPrefix, config = {}) {
     // request 拦截器
     INSTANCES.interceptors.request.use(
         config => {
-            if (loading) Toast.loading({ message: '加载中' });
+            if (loading) Toast.loading({ message: '加载中', forbidClick: true });
             return config;
         },
         function(error) {

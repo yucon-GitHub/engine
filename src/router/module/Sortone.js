@@ -1,5 +1,5 @@
 /**
- * @fileName: course 路由文件
+ * @fileName: activity 路由文件
  * @author: yucon
  * @createdTime: 2019-06-14
  * @remark: 按模块文件分路由，统一导出到index配置路由
@@ -17,9 +17,15 @@ export default [
      * title = 页面标题
      */
     {
-        title: '课程',
-        filePath: '/course/index',
-        path: '/course/index',
-        name: 'courseIndex',
+        title: '分享',
+        filePath: '/Sortone/shareAppMessage',
+        path: '/Sortone/shareAppPage',
+        name: 'Sortone',
+    },
+    {
+        title: '广告页面',
+        filePath: '/Sortone/notice',
+        path: '/Sortone/notice',
+        name: 'Sortone'
     }
-]
+];

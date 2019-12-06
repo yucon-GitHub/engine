@@ -16,7 +16,7 @@
         <div class="details-input flex" style="justify-content: space-between;"  @click="showPopup"> 
           <div class="flex">
             <img class="details-img" src="../../static/img/4.png" alt="">
-          <div class="color-main-slow" style="margin-left: 20px;">{{address}}</div>
+          <div class="color-main-slow"  :class="{'address' :city}" style="margin-left: 20px;">{{province}} {{city}} {{area}}</div>
           </div>
           <img style="width:14px;height:14px;object-fit:cover;" src="../../static/img/6.png" alt="">
         </div>
@@ -44,7 +44,9 @@ export default {
     return{
       name: "",
       phone: "",
-      address: "选择您所在的城市",
+      province: "选择您所在的城市",//省市区
+      city: "",
+      area: "",
       areaList: AreaList,
       show: false,
     }
@@ -69,7 +71,9 @@ export default {
     //地址完成
     confir(event){
       this.show = false
-      this.present = event[2].name
+      this.province = event[0].name
+      this.city = event[1].name
+      this.area = event[2].name
     }
 
   }
@@ -77,6 +81,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.address{
+  color: #282828;
+}
 .title{
   background-image: url('../../static/img/0.png');
   background-size: contain;
@@ -120,5 +127,9 @@ margin-top: 100px;
   margin: 30px 40px 0 40px;
   border-radius: 5px;
   color: $white;
+}
+input::-webkit-input-placeholder { 
+/* WebKit browsers */ 
+color: $main-slow; 
 }
 </style>

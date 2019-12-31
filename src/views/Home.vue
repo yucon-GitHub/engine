@@ -36,7 +36,7 @@
 
         <div>
             <p class="mb-10">上传文件</p>
-            <input type="file" @input="changeImg" />
+            <input type="file" @change="changeImg" />
 
             <div v-if="uploadSrc">
                 <p class="mt-10" style="word-wrap: break-word;">上传成功：{{uploadSrc}}</p>

@@ -6,6 +6,7 @@ import 'lib-flexible';
 import { ToastComponents, AlertComponents } from '@/components/Toast';
 import Vconsole from 'vconsole';
 import './static/style/reset.scss';
+import VueClipboard from 'vue-clipboard2'
 
 // 工具类--过滤器函数集
 import { filters } from '@/utils/common';
@@ -14,6 +15,7 @@ Vue.config.productionTip = false;
 
 Vue.use(ToastComponents);
 Vue.use(AlertComponents);
+Vue.use(VueClipboard);
 
 // 添加全局过滤器
 Object.keys(filters).forEach(key => {

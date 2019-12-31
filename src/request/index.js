@@ -24,6 +24,8 @@ export default function(prefix = reConfig.apiPrefix, config = {}) {
         }
     );
 
+    let ignoreQs = ['json', 'multipart'];
+
     // response 拦截器
     INSTANCES.interceptors.response.use(
         function(response) {
@@ -58,7 +60,7 @@ export default function(prefix = reConfig.apiPrefix, config = {}) {
         },
         // post 请求序列化 params
         post: (url, params) => {
-            params = qs.stringify(params);
+            if (!ignoreQs.includes(config.ContentType)) params = qs.stringify(params);
             return INSTANCES.post(url, params);
         },
         put: INSTANCES.put,

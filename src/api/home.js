@@ -8,3 +8,6 @@ import request from '@/request/index';
 
 // 测试接口
 export const testPhp = params => request().post('/api/Test/test', params);
+
+// 上传图片
+export const uploadFile = params => request('', { ContentType: 'multipart' }).post('/api/upload/uploadFile', params);

@@ -34,13 +34,27 @@
             </div>
         </swiper>
 
-        <button @click="yuconTest">api test</button>
+        <div>
+            <p class="mb-10">上传文件</p>
+            <input type="file" @input="changeImg" />
+
+            <div v-if="uploadSrc">
+                <p class="mt-10" style="word-wrap: break-word;">上传成功：{{uploadSrc}}</p>
+
+                <button
+                    class="mt-10"
+                    @click="copyText"
+                >复制地址</button>
+            </div>
+        </div>
+
+        <!--<button @click="yuconTest">api test</button>-->
     </div>
 </template>
 
 <script>
-import { environment, validateForm, scrollBottom, searchParams, countDownText, urlToBlob } from '@/utils/common';
-import { testPhp } from '@/api/home';
+import { environment, validateForm, scrollBottom, searchParams } from '@/utils/common';
+import { testPhp, uploadFile } from '@/api/home';
 import { mapState } from 'vuex';
 
 const modal = () => import('@/components/modal');
@@ -66,24 +80,25 @@ export default {
             name: 'hah',
             phone: '1562645588',
             // 下拉加载
-            loadMore: true
+            loadMore: true,
+            uploadSrc: ''
         };
     },
 
     created() {
         console.log(environment().isAndroid);
         console.log(searchParams(), 'params');
-        this.yuconTest();
+        // this.yuconTest();
         /* 轻提示
          * type 支持的类型为 none, success, error, success
          */
-        // this.$toast('成功', 'none');
+        this.$toast('成功', 'none');
 
-        this.$nextTick(() => {
-            scrollBottom(() => {
-                if (this.loadMore) this.getList();
-            });
-        });
+        // this.$nextTick(() => {
+        //     scrollBottom(() => {
+        //         if (this.loadMore) this.getList();
+        //     });
+        // });
         // console.log(scrollBottom());
 
         // let time = 86400 * 1000;
@@ -163,18 +178,42 @@ export default {
                 id: 2
             };
             testPhp(params);
+        },
+
+        async changeImg(event) {
+            let formData = new FormData();
+            console.log(event.target.files[0]);
+            formData.append('file', event.target.files[0]);
+
+            let { code, data } = await uploadFile(formData);
+            if (code === 200) {
+                this.$toast('上传成功', 'success');
+                this.uploadSrc = data;
+            }
+        },
+
+        copyText() {
+            this.$copyText(this.uploadSrc).then(res => {
+                this.$toast('复制成功', 'success');
+            }).catch(() => {
+                this.$toast('复制失败', 'error');
+            });
         }
     }
 };
 </script>
 <style lang="scss" scoped>
-.box{
-    width: 50px;
-    height: 50px;
-}
-.btn-group {
-    button {
-        margin: 5px;
+    .home {
+        padding: 15px;
+
+        .box{
+            width: 50px;
+            height: 50px;
+        }
+        .btn-group {
+            button {
+                margin: 5px;
+            }
+        }
     }
-}
 </style>

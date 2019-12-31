@@ -20,7 +20,7 @@ function construction() {
         item.meta = {};
         item.meta.title = item.title;
         item.component = () =>
-            import (`@/views${item.filePath}.vue`)
+            import (`@/views${item.filePath}.vue`);
     });
     return routerModule;
 }

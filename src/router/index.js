@@ -28,7 +28,8 @@ function construction() {
 export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
-    routes: [{
+    routes: [
+        {
             path: '*',
             component: errorPage,
             redirect: { name: 'home' },
@@ -52,8 +53,6 @@ export default new Router({
                 title: 'notice'
             }
         },
-
-
 
         ...construction()
     ],

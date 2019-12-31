@@ -86,7 +86,6 @@ export default {
         });
         // console.log(scrollBottom());
 
-
         // let time = 86400 * 1000;
         // setInterval(() => {
         //     time -= 100;

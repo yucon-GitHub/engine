@@ -8,7 +8,7 @@ export default {
 	baseUrl:
 		process.env.VUE_APP_TITLE === "TP"
 			? process.env.VUE_APP_URL
-			: "http://81.69.12.254:8100",
+			: "http://81.69.12.254:8100/api",
 	apiPrefix: "", // 请求前缀，通常是版本号version,如：/api/v2
 	resources: "" // 网络资源路径
 };

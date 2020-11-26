@@ -1,53 +1,33 @@
 module.exports = {
-    root: true,
+	root: false,
 
-    env: {
-        node: true,
-        browser: true,
-        es6: true
-    },
+	env: {
+		node: true,
+		browser: true,
+		es6: true
+	},
 
-    rules: {
-        indent: [
-            'error',
-            4
-        ],
-        eqeqeq: [
-            'off',
-            'smart'
-        ],
-        camelcase: [
-            'off',
-            {
-                properties: 'never'
-            }
-        ],
-        'linebreak-style': [
-            'off'
-        ],
-        quotes: [
-            'warn',
-            'single'
-        ],
-        semi: [
-            'error',
-            'always'
-        ],
-        'no-console': 'off',
-        'no-debugger': 'off',
-        'no-tabs': 'off',
-        'space-before-function-paren': [
-            'error',
-            'never'
-        ]
-    },
+	rules: {
+		indent: ["error", 4],
+		eqeqeq: ["off", "smart"],
+		camelcase: [
+			"off",
+			{
+				properties: "never"
+			}
+		],
+		"linebreak-style": ["off"],
+		quotes: ["warn", "single"],
+		semi: ["error", "always"],
+		"no-console": "off",
+		"no-debugger": "off",
+		"no-tabs": "off",
+		"space-before-function-paren": ["error", "never"]
+	},
 
-    parserOptions: {
-        parser: 'babel-eslint'
-    },
+	parserOptions: {
+		parser: "babel-eslint"
+	},
 
-    'extends': [
-        'plugin:vue/essential',
-        '@vue/standard'
-    ]
-}
+	extends: ["plugin:vue/essential", "@vue/standard"]
+};

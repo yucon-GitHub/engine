@@ -25,7 +25,7 @@ module.exports = {
         port: 8000,
         proxy: {
             '/proxyApi': {
-                target: 'http://www.yucon.com/',
+                target: 'http://81.69.12.254:8100/api',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/proxyApi': '/'
@@ -38,7 +38,7 @@ module.exports = {
         loaderOptions: {
             // 全局引入 scss 主题色变量 及 mixin 混合器
             sass: {
-                data: `@import "~@/static/style/theme.scss";@import "~@/static/style/mixin.scss";`
+                data: `@import "~@/static/style/theme.scss";@import "~@/static/style/mixin.scss";@import "@/static/style/variable.scss";`
             },
             postcss: {
                 plugins: [

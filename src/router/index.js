@@ -1,26 +1,21 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../views/Home.vue';
-import notice from '../views/activity/notice.vue';
 import errorPage from '@/views/404.vue';
 import userModule from './module/user'; // user路由模块
-import courseModule from './module/course'; // 课程路由模块
-import activityModule from './module/activity'; // 课程路由模块
 Vue.use(Router);
 
 // 重组路由模块
 function construction() {
     // 所有路由
     let routerModule = [
-        ...userModule,
-        ...courseModule,
-        ...activityModule
+        ...userModule
     ];
     routerModule.forEach(item => {
         item.meta = {};
         item.meta.title = item.title;
         item.component = () =>
-            import (`@/views${item.filePath}.vue`);
+            import(`@/views${item.filePath}.vue`);
     });
     return routerModule;
 }
@@ -45,12 +40,13 @@ export default new Router({
                 title: 'HOME'
             }
         },
+
         {
-            path: '/notice',
-            name: 'notice',
-            component: notice,
+            path: "/automationPage/:id?",
+            name: "automationPageIndex",
+            component: () => import("@/views/automationPage/index.vue"),
             meta: {
-                title: 'notice'
+                title: "自动化web"
             }
         },
 

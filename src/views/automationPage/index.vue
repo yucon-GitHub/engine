@@ -44,11 +44,11 @@ export default {
 
 	async created() {
 		await this.getData();
-		this.initShare();
+		// this.initShare();
 
-		// 老师二维码组
-		if (this.config.qrCodeGroup && this.config.qrCodeGroup.length)
-			this.infoTeacher();
+		// // 老师二维码组
+		// if (this.config.qrCodeGroup && this.config.qrCodeGroup.length)
+		// 	this.infoTeacher();
 	},
 
 	methods: {

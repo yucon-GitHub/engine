@@ -45,4 +45,4 @@ jobs:
       SOURCE: "public/"
       REMOTE_HOST: http://81.69.12.254
       REMOTE_USER: root
-      TARGET: ${{ secrets.TARGET }}
+      TARGET: /www/wwwroot/web/engine

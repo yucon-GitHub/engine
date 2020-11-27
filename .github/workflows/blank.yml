@@ -21,9 +21,9 @@ jobs:
      
     # react项目的FOLDER为build，vue项目改为dist   
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: hengkx/ssh-deploy@v1.0.1
       with:
+        USERNAME: root
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: dist
-
+        SOURCE: 'dist'
+        TARGET: '/www/wwwroot/web/engine'

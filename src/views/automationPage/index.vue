@@ -5,7 +5,6 @@
 				<module :item="item" :index="index" @operate="operate"></module>
 			</li>
 		</ul>
-		1
 
 		<!-- popup -->
 		<module-popup ref="popup" @operate="operate"></module-popup>

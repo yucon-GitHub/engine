@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       - uses: srt32/git-actions@v0.0.3
         with:
@@ -27,6 +27,6 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.ASSESS_TOKEN }}
           REMOTE_USER: "root"
-          REMOTE_HOST: "http://81.69.12.254"
+          REMOTE_HOST: "81.69.12.254"
           SOURCE: "dist"
           TARGET: "/www/wwwroot/web/engine"

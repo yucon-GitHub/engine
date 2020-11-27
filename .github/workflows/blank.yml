@@ -8,22 +8,22 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        persist-credentials: false
-        
-    # npm run build
-    - name: Install and Build
-      run: |
-        npm install
-        npm run build
-     
-    # react项目的FOLDER为build，vue项目改为dist   
-    - name: Deploy
-      uses: hengkx/ssh-deploy@v1.0.1
-      with:
-        USERNAME: root
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        SOURCE: 'dist'
-        TARGET: '/www/wwwroot/web/engine'
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      # npm run build
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+
+      # 打包
+      - name: Deploy
+        uses: hengkx/ssh-deploy@v1.0.1
+        with:
+          USERNAME: "root"
+          ACCESS_TOKEN: ${{ secrets.ASSESS_TOKEN }}
+          SOURCE: "dist"
+          TARGET: "/www/wwwroot/web/engine"

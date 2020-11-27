@@ -12,10 +12,11 @@ jobs:
         uses: actions/checkout@master
 
       # npm run build
-      #      - name: Install and Build
-      #        run: |
-      #          npm install
-      #          npm run build
+      - name: Install
+        run: npm install
+
+      - name: Build
+        run: npm run build
 
       # 打包
       - name: Deploy

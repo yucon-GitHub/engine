@@ -12,8 +12,8 @@ jobs:
         uses: actions/checkout@master
 
       - uses: srt32/git-actions@v0.0.3
-          with:
-            args: git submodule update --init --recursive
+        with:
+          args: git submodule update --init --recursive
 
       # npm run build
       - name: Install and Build

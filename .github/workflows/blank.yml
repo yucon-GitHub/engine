@@ -15,11 +15,17 @@ jobs:
         with:
           args: git submodule update --init --recursive
 
+      # 使用 node:10
+      - name: use Node.js 10
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
       # npm run build
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
+      # - name: Install and Build
+      # run: |
+      # npm install
+      # npm run build
 
       # 打包
       - name: Deploy

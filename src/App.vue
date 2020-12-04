@@ -1,59 +1,60 @@
 <template>
-    <div id="app">
-        <transition :name="transitionName">
-            <router-view/>
-        </transition>
-    </div>
+	<div id="app">
+		<transition :name="transitionName" mode="out-in">
+			<router-view />
+		</transition>
+	</div>
 </template>
 
 <script>
 export default {
-    name: 'App',
-    data() {
-        return {
-            transitionName: 'slide-right',
-            
-        };
-    },
+	name: "App",
+	data() {
+		return {
+			transitionName: "slide-right"
+		};
+	},
 
-    watch: {
-        '$route'(to, from) {
-            this.transitionName = to.query.time < from.query.time ? 'slide-left' : 'slide-right';
-        }
-    }
+	watch: {
+		$route(to, from) {
+			this.transitionName =
+				to.query.t < from.query.t ? "slide-left" : "slide-right";
+		}
+	}
 };
 </script>
 <style lang="scss" scoped>
-#app{
-    width: 100%;
-    min-height: 100%;
-    position: relative;
+#app {
+	width: 100%;
+	min-height: 100%;
+	position: relative;
+}
 
-}
 .slide-right-enter-active {
-    animation: enter .3s forwards;
-    @keyframes enter {
-        0% {
-            opacity: 0;
-            transform: translateX(100%);
-        }
-        100% {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
+	animation: enter 1s;
+
+	@keyframes enter {
+		from {
+			transform: translateX(100%);
+		}
+
+		to {
+			transform: translate(0);
+		}
+	}
 }
+
 .slide-left-enter-active {
-    animation: leave .5s;
-    @keyframes leave {
-        from {
-            opacity: 0;
-            transform: translateX(-100%);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
+	animation: leave 1s;
+
+	@keyframes leave {
+		from {
+			transform: translateX(-100%);
+		}
+
+		to {
+			transform: translate(0);
+		}
+	}
 }
 </style>

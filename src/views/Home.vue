@@ -26,7 +26,9 @@
 
 		<div class="box back-color-main" @click="modalFlag = true"></div>
 
-		<router-link :to="{ name: 'userAbout' }">router-path</router-link>
+		<router-link :to="{ name: 'automationPageIndex', params: { id: 1 } }"
+			>router-path</router-link
+		>
 
 		<!-- toast btn -->
 		<div class="flex flex-column-center flex-warp btn-group">

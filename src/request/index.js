@@ -38,10 +38,12 @@ export default function(prefix = reConfig.apiPrefix, config = {}) {
 				});
 				return;
 			}
+
 			// 错误提示
 			if (response.data.message && response.data.code !== 200) {
 				Toast(response.data.message);
 			}
+
 			ToastHide();
 			return response.data;
 		},
@@ -58,12 +60,14 @@ export default function(prefix = reConfig.apiPrefix, config = {}) {
 			config.params = params;
 			return INSTANCES.get(url, config);
 		},
+
 		// post 请求序列化 params
 		post: (url, params) => {
 			if (!ignoreQs.includes(config.ContentType))
 				params = qs.stringify(params);
 			return INSTANCES.post(url, params);
 		},
+
 		put: INSTANCES.put,
 		patch: INSTANCES.patch
 	};
@@ -75,18 +79,22 @@ function _axiosConfig(prefix, config) {
 	const DEFAULT_HEADER = {
 		"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
 	};
+
 	// 需要用到的请求头Content-Type 信息，在接口定义处携带config 参数: ContentType
 	let ContentType = {
 		json: "application/json",
 		multipart: "multipart/form-data"
 	};
+
 	config["Content-Type"] = ContentType[config["ContentType"]];
+
 	// 开发环境默认使用proxy代理请求
 	axios.defaults.baseURL =
 		process.env.NODE_ENV === "development"
 			? `${prefix}/proxyApi`
 			: `${reConfig.baseUrl}${prefix}`;
 	axios.defaults.timeout = 5000;
+
 	config = {
 		headers: {
 			"Content-Type":

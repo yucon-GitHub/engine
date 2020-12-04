@@ -33,10 +33,12 @@ if (process.env.NODE_ENV === "development") new Vconsole();
 
 /* 路由守卫 */
 router.beforeEach((to, from, next) => {
-	document.title = to.meta.title || "T-JUNCTION";
-	if (!to.query.hasOwnProperty("time")) {
+	document.title = to.meta.title || "ENGINE";
+
+	if (!to.query.hasOwnProperty("t")) {
 		let query = to.query;
-		query.time = new Date().getTime();
+		query.t = new Date().getTime();
+
 		next({
 			path: to.path,
 			query

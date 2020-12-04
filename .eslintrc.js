@@ -8,7 +8,7 @@ module.exports = {
 	},
 
 	rules: {
-		indent: ["error", 4],
+		indent: ["error", 2],
 		eqeqeq: ["off", "smart"],
 		camelcase: [
 			"off",

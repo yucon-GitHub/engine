@@ -4,17 +4,17 @@
 
 // 头像
 @mixin avatar-img($width, $height) {
-    width: $width;
-    height: $height;
-    border-radius: 50%;
-    display: block;
-    object-fit: cover;
-    background: #e8e8e8;
+  width: $width;
+  height: $height;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  background: #e8e8e8;
 }
 // 居中
 @mixin left-top-center {
-    position: fixed;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

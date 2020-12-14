@@ -31,7 +31,7 @@ export default {
 }
 
 .slide-right-enter-active {
-	animation: enter 1s;
+	animation: enter 0.3s;
 
 	@keyframes enter {
 		from {
@@ -45,7 +45,7 @@ export default {
 }
 
 .slide-left-enter-active {
-	animation: leave 1s;
+	animation: leave 0.3s;
 
 	@keyframes leave {
 		from {

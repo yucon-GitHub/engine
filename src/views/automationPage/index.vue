@@ -105,9 +105,11 @@ export default {
 		 */
 		infoTeacher() {
 			this.config.qrCodeGroup.forEach(async (_, index) => {
-				let shareId = this.$route.query[
+				let shareId = +this.$route.query[
 					`shareId${index > 0 ? index + 1 : ""}`
 				];
+				if (shareId === 0) return;
+
 				let adminUserWxId = this.$route.query[
 					`adminUserWxId${index > 0 ? index + 1 : ""}`
 				];

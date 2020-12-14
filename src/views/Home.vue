@@ -16,7 +16,7 @@
 			confirmText="好的"
 			v-model="modalFlag"
 			@closeModal="modalFlag = false"
-			:mask="true"
+			mask
 			:maskClick="true"
 		>
 			<div slot="content">

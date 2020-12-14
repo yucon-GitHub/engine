@@ -1,156 +1,213 @@
-@import './theme';
-@import './iconfont.css';
-@import './mixin';
+@import "./theme";
+@import "./iconfont.css";
+@import "./mixin";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-overflow-scrolling: touch;
-    font-size: 16px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  font-size: 16px;
 }
 
 html {
-    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Source Han Sans SC, WenQuanYi Micro Hei, sans-serif;
-    height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Arial,
+    PingFang SC, Hiragino Sans GB, Microsoft YaHei, Source Han Sans SC,
+    WenQuanYi Micro Hei, sans-serif;
+  height: 100%;
 }
 
-li { list-style: none; }
+li {
+  list-style: none;
+}
 
 // color & background-color
 @each $name,
-$color in (black: $black, white: $white, white-slow: $white-slow, basic: $basic, second: $second, main: $main,
-    main-slow: $main-slow, main-deep: $main-deep, success: $success, warning: $warning, danger: $danger, error: $error, active: $active) {
-    .color-#{ '' + $name } {
-        color: $color;
-   }
+  $color
+    in (
+      black: $black,
+      white: $white,
+      white-slow: $white-slow,
+      basic: $basic,
+      second: $second,
+      main: $main,
+      main-slow: $main-slow,
+      main-deep: $main-deep,
+      success: $success,
+      warning: $warning,
+      danger: $danger,
+      error: $error,
+      active: $active
+    )
+{
+  .color-#{ "" + $name } {
+    color: $color;
+  }
 
-    .back-color-#{ '' + $name } {
-        background-color: $color;
-    }
+  .back-color-#{ "" + $name } {
+    background-color: $color;
+  }
 }
 
 // 字体
 @for $i from 12 through 50 {
-    .fz-#{$i} {
-        font-size: $i + px;
-    }
+  .fz-#{$i} {
+    font-size: $i + px;
+  }
 }
 
 // ---- 边距 ----
 @for $i from 1 through 5 {
-    .mt-#{$i * 10} {
-        margin-top: $i * 10px;
-    }
+  .mt-#{$i * 10} {
+    margin-top: $i * 10px;
+  }
 
-    .mr-#{$i * 10} {
-        margin-right: $i * 10px;
-    }
+  .mr-#{$i * 10} {
+    margin-right: $i * 10px;
+  }
 
-    .mb-#{$i * 10} {
-        margin-bottom: $i * 10px;
-    }
+  .mb-#{$i * 10} {
+    margin-bottom: $i * 10px;
+  }
 
-    .ml-#{$i * 10} {
-        margin-left: $i * 10px;
-    }
+  .ml-#{$i * 10} {
+    margin-left: $i * 10px;
+  }
 }
 
 /*  布局 */
 
 // flex
-.flex { display: flex; }
+.flex {
+  display: flex;
+}
 
-.flex-warp { flex-wrap: wrap };
+.flex-warp {
+  flex-wrap: wrap;
+}
 
-.space-between { justify-content: space-between; }
+.space-between {
+  justify-content: space-between;
+}
 
-.flex-center { justify-content: center; }
+.flex-center {
+  justify-content: center;
+}
 
-.flex-start { justify-content: flex-start; }
+.flex-start {
+  justify-content: flex-start;
+}
 
-.flex-end { justify-content: flex-end; }
+.flex-end {
+  justify-content: flex-end;
+}
 
-.flex-column-center { align-items: center; }
+.flex-column-center {
+  align-items: center;
+}
 
-.flex-column { flex-flow: column; }
+.flex-column {
+  flex-flow: column;
+}
 
-.flex-1 { flex: 1; }
+.flex-1 {
+  flex: 1;
+}
 
 /* layout */
-.bold { font-weight: bold; }
+.bold {
+  font-weight: bold;
+}
 
-.radius-4 { border-radius: 4px; }
-.radius-10 { border-radius: 10px; }
-.radius-20 { border-radius: 20px; }
+.radius-4 {
+  border-radius: 4px;
+}
+.radius-10 {
+  border-radius: 10px;
+}
+.radius-20 {
+  border-radius: 20px;
+}
 
-.relative { position: relative; }
+.relative {
+  position: relative;
+}
 
 // 全屏居中
 .left-top-center {
-    @include left-top-center;
+  @include left-top-center;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 // 主题色外发光
-.theme-shadow { box-shadow: 0 0 4px 4px $main; }
+.theme-shadow {
+  box-shadow: 0 0 4px 4px $main;
+}
 
 /* 超出隐藏 */
 // 单行省略
 .text-hidden {
-    width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 // 两行省略
 .text-hidden-2 {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 // 按钮默认样式
 button {
-    display: inline-block;
-    border-radius: 4px;
+  display: inline-block;
+  border-radius: 4px;
+  outline: 0;
+  box-sizing: content-box;
+  background-color: transparent;
+  border: 1px solid $main;
+  padding: 10px 25px;
+  letter-spacing: 1px;
+  // cursor: pointer;
+  color: $main;
+  &[type="primary"] {
+    background: $main;
+    color: $white;
+  }
+  &::before,
+  &::after {
+    border: 0;
     outline: 0;
-    box-sizing: content-box;
-    background-color: transparent;
-    border: 1px solid $main;
-    padding:10px 25px;
-    letter-spacing: 1px;
-    // cursor: pointer;
-    color: $main;
-    &[type="primary"] {
-        background: $main;
-        color: $white;
-    }
-    &::before,
-    &::after {
-        border: 0;
-        outline: 0;
-    }
+  }
 
-    // 点击反馈
-    &:active {
-        filter: brightness(0.8);
-        transform: scale(.95);
-    }
+  // 点击反馈
+  &:active {
+    filter: brightness(0.8);
+    transform: scale(0.95);
+  }
 }
 
 // mask 遮罩
-.mask { position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, .5); z-index: 9; }
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+}
 
 // 交互反馈
 .pointer {
-    cursor: pointer;
-    :active {
-        filter: brightness(.8);
-    }
+  cursor: pointer;
+  :active {
+    filter: brightness(0.8);
+  }
 }

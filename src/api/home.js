@@ -4,10 +4,14 @@
  * @method: post/get/put/patch
  * @params: 接收接口地址和入参
  */
-import request from '@/request/index';
+import request from "@/request/index";
 
 // 测试接口
-export const testPhp = params => request().post('/api/Test/test', params);
+export const testPhp = params => request().post("/api/Test/test", params);
 
 // 上传图片
-export const uploadFile = params => request('', { ContentType: 'multipart', loading: true }).post('/api/upload/uploadFile', params);
+export const uploadFile = params =>
+	request("", { ContentType: "multipart", loading: true }).post(
+		"/upload/uploadFile",
+		params
+	);

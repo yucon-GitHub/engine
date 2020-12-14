@@ -33,8 +33,8 @@
 		<!-- toast btn -->
 		<div class="flex flex-column-center flex-warp btn-group">
 			<button @click="showToast">提示</button>
-			<button @click="showAlert">alert</button>
-			<button @click="showOther">其他toast 测试</button>
+			<button @click="showAlert">Alert</button>
+			<button @click="showOther">其他Toast 测试</button>
 			<button @click="formFilter">表单验证</button>
 		</div>
 

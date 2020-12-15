@@ -8,11 +8,27 @@ import { Toast, ToastHide } from "@/components/Toast";
  * axios 二次封装
  * @params: prefix = 请求域名前缀符(API版本号)；config = 请求配置，目前支持loading，请求头Content-Type
  */
+
+// 默认请求头
+const DEFAULT_HEADER = {
+	"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+};
+
+// 需要用到的请求头Content-Type 信息，在接口定义处携带config 参数: ContentType
+const CONTENT_TYPE = {
+	json: "application/json",
+	multipart: "multipart/form-data"
+};
+
+const IGNORE_QS = ["json", "multipart"];
+
 export default function(prefix = reConfig.apiPrefix, config = {}) {
 	// 请求携带是否需要loading
-	let { loading } = config;
+	let { loading = false } = config;
+
 	// 创建一个axios实例 config、prefix 为独立请求的配置
 	const INSTANCES = _axiosConfig(prefix, config);
+
 	// request 拦截器
 	INSTANCES.interceptors.request.use(
 		config => {
@@ -23,8 +39,6 @@ export default function(prefix = reConfig.apiPrefix, config = {}) {
 			return Promise.reject(error);
 		}
 	);
-
-	let ignoreQs = ["json", "multipart"];
 
 	// response 拦截器
 	INSTANCES.interceptors.response.use(
@@ -56,14 +70,13 @@ export default function(prefix = reConfig.apiPrefix, config = {}) {
 
 	return {
 		// get 请求将参数加进 config[params]
-		get: (url, params, config = {}) => {
-			config.params = params;
-			return INSTANCES.get(url, config);
+		get: (url, params) => {
+			return INSTANCES.get(url, { params });
 		},
 
 		// post 请求序列化 params
 		post: (url, params) => {
-			if (!ignoreQs.includes(config.ContentType))
+			if (!IGNORE_QS.includes(config.ContentType))
 				params = qs.stringify(params);
 			return INSTANCES.post(url, params);
 		},
@@ -73,34 +86,30 @@ export default function(prefix = reConfig.apiPrefix, config = {}) {
 	};
 }
 
-// 重设config
+/**
+ * 实例设置 axios
+ * @param prefix
+ * @param config
+ * @returns {AxiosInstance}
+ * @private
+ */
 function _axiosConfig(prefix, config) {
-	// 默认请求头
-	const DEFAULT_HEADER = {
-		"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-	};
+	let { ContentType = "", timeout = 5000 } = config;
 
-	// 需要用到的请求头Content-Type 信息，在接口定义处携带config 参数: ContentType
-	let ContentType = {
-		json: "application/json",
-		multipart: "multipart/form-data"
-	};
+	let axiosConfig = {
+		timeout,
 
-	config["Content-Type"] = ContentType[config["ContentType"]];
+		// 开发环境默认使用proxy代理请求
+		baseURL:
+			process.env.NODE_ENV === "development"
+				? `${prefix}/proxyApi`
+				: `${reConfig.baseUrl}${prefix}`,
 
-	// 开发环境默认使用proxy代理请求
-	axios.defaults.baseURL =
-		process.env.NODE_ENV === "development"
-			? `${prefix}/proxyApi`
-			: `${reConfig.baseUrl}${prefix}`;
-	axios.defaults.timeout = 5000;
-
-	config = {
 		headers: {
 			"Content-Type":
-				config["Content-Type"] || DEFAULT_HEADER["Content-Type"]
-		},
-		...config
+				CONTENT_TYPE[ContentType] || DEFAULT_HEADER["Content-Type"]
+		}
 	};
-	return axios.create(config);
+
+	return axios.create(axiosConfig);
 }

@@ -6,3 +6,8 @@
 
 // 继承式库的主题变量
 @import "~web-common-library/scss/theme/index.scss";
+
+:root {
+  --window-top: 0.1px;
+  --window-bottom: 0.1px;
+}

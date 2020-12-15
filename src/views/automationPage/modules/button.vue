@@ -1,5 +1,5 @@
 <template>
-	<div class="module-button">
+	<div class="module-button" :class="{ footer: $attrs.item.isFooter }">
 		<div class="content">
 			<ul
 				class="box box-wrap box-between"

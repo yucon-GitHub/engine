@@ -49,24 +49,17 @@
 </template>
 
 <script>
-const ModuleImage = () => import("../modules/image");
-const ModuleText = () => import("../modules/text");
-const ModuleSwipe = () => import("../modules/swipe");
-const ModuleVideo = () => import("../modules/video");
-const ModuleCustomize = () => import("../modules/customize");
-const ModuleButton = () => import("../modules/button");
+const MODULES = require.context("../modules", false, /\.vue$/);
+
+let components = {};
+MODULES.keys().forEach(key => {
+	components[MODULES(key).default.name] = MODULES(key).default;
+});
 
 export default {
 	name: "index",
 
-	components: {
-		ModuleImage,
-		ModuleText,
-		ModuleSwipe,
-		ModuleVideo,
-		ModuleCustomize,
-		ModuleButton
-	},
+	components,
 
 	data() {
 		return {

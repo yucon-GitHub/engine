@@ -31,7 +31,10 @@
 		>
 
 		<!-- toast btn -->
-		<div class="flex flex-column-center flex-warp btn-group">
+		<div
+			class="flex flex-column-center flex-warp btn-group"
+			style="font-size: 15px;"
+		>
 			<button @click="showToast">提示</button>
 			<button @click="showAlert">Alert</button>
 			<button @click="showOther">其他Toast 测试</button>

@@ -17,7 +17,7 @@
     "vue-clipboard2": "^0.3.1",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1",
-    "web-common-library": "^1.1.7"
+    "web-common-library": "^1.2.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
